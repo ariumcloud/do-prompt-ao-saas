@@ -345,7 +345,7 @@ function CodePulseBackground({ rows = 10 }) {
     >
       {Array.from({ length: rows }).map((_, i) => (
         <div key={i} style={{ whiteSpace: 'nowrap', fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '.03em', color: 'rgba(160,144,255,.14)' }}>
-          {Array.from({ length: 3 }).map((__, rep) => (
+          {Array.from({ length: 2 }).map((__, rep) => (
             <React.Fragment key={rep}>
               {line.map((c, j) => (
                 c.bright ? (

@@ -11,11 +11,22 @@ function Guarantee() {
           }}
         >
           {/* Three organic glows at staggered delays instead of one synced
-              blob — each breathes and morphs on its own clock, so together
-              they read as a wave of pulses radiating outward rather than a
-              single shape flexing in place. Sits outside the clipped layer
-              below so nothing crops it flat at the top or sides. */}
-          {[0, 1.8, 3.6].map((delay, i) => (
+              blob — each breathes on its own clock, so together they read as
+              a wave of pulses radiating outward rather than one shape
+              flexing in place. Each gets its own fixed (not animated)
+              asymmetric border-radius for an organic silhouette — animating
+              border-radius on a blurred element is one of the most expensive
+              things a browser can repaint every frame, and doing it on three
+              layers at once was the main source of the site-wide jank.
+              Scale/opacity alone are cheap: the compositor just resizes and
+              fades an already-rendered layer, no repaint needed. Sits
+              outside the clipped layer below so nothing crops it flat at
+              the top or sides. */}
+          {[
+            { delay: 0, radius: '42% 58% 63% 37% / 41% 44% 56% 59%' },
+            { delay: 1.8, radius: '58% 42% 39% 61% / 55% 62% 38% 45%' },
+            { delay: 3.6, radius: '48% 52% 56% 44% / 60% 40% 60% 40%' },
+          ].map(({ delay, radius }, i) => (
             <span
               key={i}
               aria-hidden="true"
@@ -26,9 +37,11 @@ function Guarantee() {
                 width: `${74 - i * 10}%`,
                 maxWidth: 920 - i * 160,
                 aspectRatio: '16/10',
+                borderRadius: radius,
                 background: 'radial-gradient(circle, rgba(130,110,255,.4) 0%, rgba(90,70,210,.18) 48%, transparent 76%)',
                 filter: 'blur(38px)',
-                animation: `ar-blob-breathe 5.5s ease-in-out ${delay}s infinite, ar-blob-morph 10s ease-in-out ${delay}s infinite`,
+                animation: `ar-blob-breathe 5.5s ease-in-out ${delay}s infinite`,
+                willChange: 'transform, opacity',
                 pointerEvents: 'none',
               }}
             />
@@ -47,7 +60,7 @@ function Guarantee() {
               maskImage: 'radial-gradient(65% 85% at 50% 50%, #000 35%, transparent 82%)',
             }}
           >
-            <window.CodePulseBackground rows={14} />
+            <window.CodePulseBackground rows={10} />
           </div>
           {/* Localized dark vignette behind the text only, fading to fully
               transparent well before the section edges, so it boosts
