@@ -2,22 +2,35 @@ const { Badge, Button, SectionHeading, Accordion, Icon, Wordmark, Input } = wind
 
 function Guarantee() {
   return (
-    <section className="ar-section" style={{ position: 'relative', overflow: 'hidden', paddingBlock: 'clamp(64px,11vw,150px)' }}>
-      <window.CodePulseBackground rows={16} />
-      <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, var(--bg-page) 0%, transparent 20%, transparent 80%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
-      <div className="ar-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 18, maxWidth: 640, marginInline: 'auto' }}>
-        <span style={{ position: 'relative', display: 'grid', placeItems: 'center', width: 76, height: 76 }}>
-          <span aria-hidden="true" className="ar-pulse-ring" style={{ borderColor: 'var(--text-accent)' }} />
-          <span aria-hidden="true" className="ar-pulse-ring" style={{ borderColor: 'var(--text-accent)', animationDelay: '1.3s' }} />
-          <span style={{ position: 'relative', display: 'grid', placeItems: 'center', width: 76, height: 76, borderRadius: '50%', background: 'var(--accent-quiet)', border: '1px solid var(--border-accent)', color: 'var(--text-accent)', boxShadow: '0 0 44px rgba(160,144,255,.35)' }}>
-            <Icon name="shield-check" size={30} />
-          </span>
-        </span>
-        <Badge tone="glass" size="sm">Garantia</Badge>
-        <h3 style={{ fontSize: 'var(--text-h3)' }}>7 dias para testar. O risco é meu.</h3>
-        <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-muted)' }}>
-          Assista aos módulos, baixe o repositório, faça o primeiro deploy. Se em uma semana você achar que não era isso, responde o e-mail de compra e eu devolvo os R$197. Sem formulário, sem pergunta de retenção.
-        </p>
+    <section className="ar-section">
+      <div className="ar-container">
+        <div
+          style={{
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: 48,
+            border: '1px solid rgba(160,144,255,.16)',
+            boxShadow: '0 0 90px 10px rgba(120,100,255,.14), inset 0 0 60px rgba(80,60,200,.12)',
+            padding: 'clamp(56px,9vw,110px) clamp(24px,6vw,48px)',
+          }}
+        >
+          <window.CodePulseBackground rows={14} />
+          <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 0%, rgba(6,6,7,.4) 50%, transparent 100%), radial-gradient(60% 90% at 50% 50%, transparent 40%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 18, maxWidth: 560, marginInline: 'auto' }}>
+            <span style={{ position: 'relative', display: 'grid', placeItems: 'center', width: 76, height: 76 }}>
+              <span aria-hidden="true" className="ar-pulse-ring" style={{ borderColor: 'var(--text-accent)' }} />
+              <span aria-hidden="true" className="ar-pulse-ring" style={{ borderColor: 'var(--text-accent)', animationDelay: '1.3s' }} />
+              <span style={{ position: 'relative', display: 'grid', placeItems: 'center', width: 76, height: 76, borderRadius: '50%', background: 'var(--accent-quiet)', border: '1px solid var(--border-accent)', color: 'var(--text-accent)', boxShadow: '0 0 44px rgba(160,144,255,.35)' }}>
+                <Icon name="shield-check" size={30} />
+              </span>
+            </span>
+            <Badge tone="glass" size="sm">Garantia</Badge>
+            <h3 style={{ fontSize: 'var(--text-h3)' }}>7 dias para testar. O risco é meu.</h3>
+            <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-muted)' }}>
+              Assista aos módulos, baixe o repositório, faça o primeiro deploy. Se em uma semana você achar que não era isso, responde o e-mail de compra e eu devolvo os R$197. Sem formulário, sem pergunta de retenção.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

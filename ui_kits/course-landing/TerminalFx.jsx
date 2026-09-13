@@ -310,23 +310,22 @@ function GridBeamOverlay({ gridRef }) {
   );
 }
 
-// Ambient rows of hex-like text with a handful of characters per line
-// pulsing independently — a background texture for sections about trust /
-// security (encryption, guarantees), not meant to be read. Lines and which
-// characters glow are randomized once per mount and never re-rolled, so the
-// layout doesn't jitter on re-render.
+// Ambient rows of hex-like text behind sections about trust/security
+// (encryption, guarantees), not meant to be read. Every row repeats the same
+// generated string, so the same characters land in the same column on every
+// line; a handful of columns glow with a delay proportional to their column
+// index, so the highlight sweeps left-to-right in lockstep across every row
+// at once, instead of flickering independently at random.
 function CodePulseBackground({ rows = 10 }) {
-  const linesRef = React.useRef(null);
-  if (!linesRef.current) {
+  const lineRef = React.useRef(null);
+  if (!lineRef.current) {
     const chars = '0123456789abcdefABCDEF';
     const randChunk = (len) => Array.from({ length: len }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-    const randomLine = (targetLen) => {
-      let s = '';
-      while (s.length < targetLen) s += randChunk(4 + Math.floor(Math.random() * 8)) + '  :  ';
-      return s.slice(0, targetLen).split('').map((ch) => ({ ch, bright: Math.random() < 0.05 }));
-    };
-    linesRef.current = Array.from({ length: rows }, () => randomLine(200));
+    let s = '';
+    while (s.length < 90) s += randChunk(4 + Math.floor(Math.random() * 8)) + '  :  ';
+    lineRef.current = s.slice(0, 90).split('').map((ch, j) => ({ ch, bright: j % 11 === 3 }));
   }
+  const line = lineRef.current;
 
   if (arReduced) return null;
 
@@ -344,12 +343,16 @@ function CodePulseBackground({ rows = 10 }) {
         gap: 10,
       }}
     >
-      {linesRef.current.map((line, i) => (
+      {Array.from({ length: rows }).map((_, i) => (
         <div key={i} style={{ whiteSpace: 'nowrap', fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '.03em', color: 'rgba(160,144,255,.14)' }}>
-          {line.map((c, j) => (
-            c.bright ? (
-              <span key={j} style={{ color: 'rgba(217,214,255,.9)', animation: `ar-code-pulse ${1.6 + (j % 5) * 0.3}s ease-in-out ${(j % 7) * 0.25}s infinite` }}>{c.ch}</span>
-            ) : c.ch
+          {Array.from({ length: 3 }).map((__, rep) => (
+            <React.Fragment key={rep}>
+              {line.map((c, j) => (
+                c.bright ? (
+                  <span key={j} style={{ color: 'rgba(217,214,255,.9)', animation: `ar-code-pulse 3.2s ease-in-out ${j * 0.09}s infinite` }}>{c.ch}</span>
+                ) : c.ch
+              ))}
+            </React.Fragment>
           ))}
         </div>
       ))}
