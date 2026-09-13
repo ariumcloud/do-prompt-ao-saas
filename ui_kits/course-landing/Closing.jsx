@@ -33,10 +33,26 @@ function Guarantee() {
               }}
             />
           ))}
-          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', borderRadius: 40 }}>
+          {/* Faded by an alpha mask (not a gradient that ends in an opaque
+              color) so the code dissolves to fully transparent at the edges
+              — revealing the glow/section behind it seamlessly instead of
+              cutting a visible box outline where an opaque fill used to
+              meet the glow just past its border. */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              overflow: 'hidden',
+              WebkitMaskImage: 'radial-gradient(65% 85% at 50% 50%, #000 35%, transparent 82%)',
+              maskImage: 'radial-gradient(65% 85% at 50% 50%, #000 35%, transparent 82%)',
+            }}
+          >
             <window.CodePulseBackground rows={14} />
-            <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 0%, rgba(6,6,7,.4) 50%, transparent 100%), radial-gradient(60% 90% at 50% 50%, transparent 40%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
           </div>
+          {/* Localized dark vignette behind the text only, fading to fully
+              transparent well before the section edges, so it boosts
+              contrast for reading without creating any hard boundary. */}
+          <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(42% 62% at 50% 50%, rgba(6,6,7,.6) 0%, transparent 72%)', pointerEvents: 'none' }} />
           <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 18, maxWidth: 560, marginInline: 'auto' }}>
             <span style={{ position: 'relative', display: 'grid', placeItems: 'center', width: 76, height: 76 }}>
               <span aria-hidden="true" className="ar-pulse-ring" style={{ borderColor: 'var(--text-accent)' }} />
@@ -46,8 +62,8 @@ function Guarantee() {
               </span>
             </span>
             <Badge tone="glass" size="sm">Garantia</Badge>
-            <h3 style={{ fontSize: 'var(--text-h3)' }}>7 dias para testar. O risco é meu.</h3>
-            <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-muted)' }}>
+            <h3 style={{ fontSize: 'var(--text-h3)', textShadow: '0 2px 16px rgba(0,0,0,.7), 0 1px 3px rgba(0,0,0,.9)' }}>7 dias para testar. O risco é meu.</h3>
+            <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-secondary)', textShadow: '0 2px 12px rgba(0,0,0,.7), 0 1px 3px rgba(0,0,0,.9)' }}>
               Assista aos módulos, baixe o repositório, faça o primeiro deploy. Se em uma semana você achar que não era isso, responde o e-mail de compra e eu devolvo os R$197. Sem formulário, sem pergunta de retenção.
             </p>
           </div>
