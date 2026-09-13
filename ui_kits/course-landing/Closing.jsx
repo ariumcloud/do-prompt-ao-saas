@@ -8,12 +8,26 @@ function Guarantee() {
           style={{
             position: 'relative',
             overflow: 'hidden',
-            borderRadius: 48,
-            border: '1px solid rgba(160,144,255,.16)',
-            boxShadow: '0 0 90px 10px rgba(120,100,255,.14), inset 0 0 60px rgba(80,60,200,.12)',
             padding: 'clamp(56px,9vw,110px) clamp(24px,6vw,48px)',
           }}
         >
+          {/* Organic breathing glow instead of a geometric card edge — a blob
+              with asymmetric, slowly-morphing corner radii that scales and
+              fades in and out, like it's pulsing from the inside. */}
+          <span
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '50%',
+              width: 'min(92%, 920px)',
+              aspectRatio: '16/10',
+              background: 'radial-gradient(circle, rgba(130,110,255,.4) 0%, rgba(90,70,210,.18) 48%, transparent 76%)',
+              filter: 'blur(38px)',
+              animation: 'ar-blob-breathe 5.5s ease-in-out infinite, ar-blob-morph 10s ease-in-out infinite',
+              pointerEvents: 'none',
+            }}
+          />
           <window.CodePulseBackground rows={14} />
           <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 0%, rgba(6,6,7,.4) 50%, transparent 100%), radial-gradient(60% 90% at 50% 50%, transparent 40%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
           <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 18, maxWidth: 560, marginInline: 'auto' }}>
