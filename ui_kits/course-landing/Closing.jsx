@@ -50,16 +50,22 @@ function Faq() {
 function Closing() {
   return (
     <section id="mentoria" style={{ position: 'relative', paddingTop: 140, paddingBottom: 160, overflow: 'hidden', background: '#060607' }}>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, transform: 'scaleY(-1)' }}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0 }}>
         {window.FibreArc && (
           <window.FibreArc
             background="#060607"
             baseColor="#4A38C8"
             accentColor="#8C7AFF"
             highlight="#FEFDFF"
+            direction={180}
           />
         )}
       </div>
+      {/* Darkens the text column so the beams don't wash out the copy; the
+          fade is transparent by design, never boxed, so pointer-events must
+          stay off or it silently eats the mouse before FibreArc sees it —
+          same bug the hero overlay had earlier this session. */}
+      <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(58% 60% at 50% 42%, rgba(6,6,7,.88) 0%, rgba(6,6,7,.6) 45%, rgba(6,6,7,0) 78%)', pointerEvents: 'none' }} />
       <div className="ar-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 26 }}>
         <Badge tone="glass" dot>Últimas vagas da turma 2026</Badge>
         <window.TerminalType

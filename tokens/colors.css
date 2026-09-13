@@ -79,7 +79,7 @@
   /* ---- Atmosphere ------------------------------------------------------ */
   /* The house background: a violet light source bleeding in from above. */
   --glow-hero:radial-gradient(120% 80% at 50% -10%, #8C7AFF 0%, #614DFF 22%, #2A1D7A 48%, #0A0813 72%, #060607 100%); /* @kind color */
-  --glow-soft:radial-gradient(60% 60% at 50% 0%, rgba(97,77,255,.38) 0%, rgba(97,77,255,0) 70%); /* @kind color */
+  --glow-soft:radial-gradient(60% 60% at 50% 0%, rgba(97,77,255,0) 0%, rgba(97,77,255,.38) 24%, rgba(97,77,255,0) 70%); /* @kind color */
   --glow-card:radial-gradient(120% 120% at 50% 130%, rgba(140,122,255,.55) 0%, rgba(97,77,255,.18) 40%, rgba(97,77,255,0) 72%); /* @kind color */
   --gradient-accent:linear-gradient(180deg,#7362FF 0%,#614DFF 55%,#4E39F0 100%); /* @kind color */
   --gradient-chrome:linear-gradient(180deg,#FEFDFF 0%,#9B99A6 100%); /* @kind color */

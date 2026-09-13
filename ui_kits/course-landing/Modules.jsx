@@ -32,8 +32,8 @@ function Modules() {
       <div className="ar-container" style={{ position: 'relative' }}>
         <SectionHeading
           eyebrow={<Badge tone="glass">Conteúdo</Badge>}
-          title="Seis módulos que terminam com algo publicado"
-          highlight="terminam com algo publicado"
+          title="Da ideia ao primeiro pagamento, passo a passo"
+          highlight="primeiro pagamento"
           subtitle="Nenhum módulo acaba em teoria. Cada um fecha com uma entrega que você consegue abrir no navegador."
         />
         <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(330px,1fr))', gap: 18, marginTop: 56 }}>

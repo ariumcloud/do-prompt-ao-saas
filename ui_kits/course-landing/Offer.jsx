@@ -1,7 +1,7 @@
 const { Card, Badge, Button, SectionHeading, Icon, Wordmark } = window.AriumDesignSystem_4c6a30 || {};
 
 const ariumIncluded = [
-  '6 módulos gravados, do primeiro prompt ao deploy',
+  'Aulas gravadas, do primeiro prompt ao deploy',
   'Repositório-base do projeto do curso',
   'Biblioteca de prompts de arquitetura e correção',
   'Checklist de lançamento e de segurança',

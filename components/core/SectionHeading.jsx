@@ -40,13 +40,25 @@ export function SectionHeading({ eyebrow, title, highlight, subtitle, align = 'c
         {parts.length === 3 ? (
           <>
             {parts[0]}
-            <span style={{ color: 'var(--text-primary)' }}>{parts[1]}</span>
+            <span
+              style={{
+                backgroundImage: 'linear-gradient(90deg, var(--text-primary) 0%, var(--text-accent, #A090FF) 35%, var(--text-primary) 70%, var(--text-primary) 100%)',
+                backgroundSize: '220% auto',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                animation: 'ar-heading-gradient 7s linear infinite',
+              }}
+            >
+              {parts[1]}
+            </span>
             {parts[2]}
           </>
         ) : (
           title
         )}
       </h2>
+      <style>{'@keyframes ar-heading-gradient{to{background-position:-220% center}}'}</style>
       {subtitle && (
         <p style={{ margin: 0, maxWidth: 620, fontSize: 'var(--text-body-lg)', lineHeight: 'var(--lh-body)', color: 'var(--text-muted)' }}>
           {subtitle}

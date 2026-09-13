@@ -42,8 +42,7 @@ function Audience() {
       <div className="ar-container">
         <SectionHeading
           eyebrow={<Badge tone="neutral">Qualificação</Badge>}
-          title="Antes do preço, a pergunta honesta: isso é para você?"
-          highlight="isso é para você?"
+          title={<window.ColorSweepHeading text="Antes do preço, a pergunta honesta: isso é para você?" highlight="isso é para você?" />}
           subtitle="Prefiro que você feche esta página agora a pedir reembolso daqui a uma semana."
         />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: 20, marginTop: 56 }}>

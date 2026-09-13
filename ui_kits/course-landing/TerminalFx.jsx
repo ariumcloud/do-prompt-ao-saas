@@ -129,9 +129,69 @@ function arInitReveal() {
   });
 }
 
+// A heading whose letters sweep from accent-violet to their resting color,
+// staggered left to right, triggered once by IntersectionObserver (not a
+// mount timer). Keeps SectionHeading's own two-tone highlight split.
+function ColorSweepHeading({ text, highlight }) {
+  const ref = React.useRef(null);
+  const [triggered, setTriggered] = React.useState(arReduced);
+
+  React.useEffect(() => {
+    if (arReduced || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          setTriggered(true);
+          io.disconnect();
+        }
+      });
+    }, { rootMargin: '0px 0px -15% 0px', threshold: 0.3 });
+    if (ref.current) io.observe(ref.current);
+    return () => io.disconnect();
+  }, []);
+
+  let parts = [text];
+  if (highlight && text.includes(highlight)) {
+    const i = text.indexOf(highlight);
+    parts = [text.slice(0, i), highlight, text.slice(i + highlight.length)];
+  }
+  const isTwoTone = parts.length === 3;
+  let charIndex = 0;
+
+  const renderChars = (str, finalColor) => str.split('').map((ch) => {
+    const idx = charIndex++;
+    return (
+      <span
+        key={idx}
+        style={{
+          display: 'inline-block',
+          color: triggered ? finalColor : 'var(--text-accent, #A090FF)',
+          transition: `color .5s ease ${idx * 16}ms`,
+        }}
+      >
+        {ch === ' ' ? ' ' : ch}
+      </span>
+    );
+  });
+
+  return (
+    <span ref={ref}>
+      {isTwoTone ? (
+        <>
+          {renderChars(parts[0], 'var(--text-secondary)')}
+          {renderChars(parts[1], 'var(--text-primary)')}
+          {renderChars(parts[2], 'var(--text-secondary)')}
+        </>
+      ) : (
+        renderChars(text, 'var(--text-primary)')
+      )}
+    </span>
+  );
+}
+
 // Wraps a button with a spinning conic-gradient rim (see .ar-beam-wrap in index.html).
 function BeamWrap({ children, style }) {
   return <span className="ar-beam-wrap" style={style}>{children}</span>;
 }
 
-Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap });
+Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap, ColorSweepHeading });

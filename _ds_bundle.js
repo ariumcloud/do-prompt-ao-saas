@@ -532,7 +532,12 @@ function SectionHeading({
     }
   }, parts.length === 3 ? /*#__PURE__*/React.createElement(React.Fragment, null, parts[0], /*#__PURE__*/React.createElement("span", {
     style: {
-      color: 'var(--text-primary)'
+      backgroundImage: 'linear-gradient(90deg, var(--text-primary) 0%, var(--text-accent, #A090FF) 35%, var(--text-primary) 70%, var(--text-primary) 100%)',
+      backgroundSize: '220% auto',
+      WebkitBackgroundClip: 'text',
+      backgroundClip: 'text',
+      color: 'transparent',
+      animation: 'ar-heading-gradient 7s linear infinite'
     }
   }, parts[1]), parts[2]) : title), subtitle && /*#__PURE__*/React.createElement("p", {
     style: {
@@ -542,7 +547,7 @@ function SectionHeading({
       lineHeight: 'var(--lh-body)',
       color: 'var(--text-muted)'
     }
-  }, subtitle));
+  }, subtitle), /*#__PURE__*/React.createElement("style", null, '@keyframes ar-heading-gradient{to{background-position:-220% center}}'));
 }
 Object.assign(__ds_scope, { SectionHeading });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/SectionHeading.jsx", error: String((e && e.message) || e) }); }
