@@ -1,22 +1,23 @@
-const { Card, Badge, Button, SectionHeading, Accordion, Icon, Wordmark, Input } = window.AriumDesignSystem_4c6a30 || {};
+const { Badge, Button, SectionHeading, Accordion, Icon, Wordmark, Input } = window.AriumDesignSystem_4c6a30 || {};
 
 function Guarantee() {
   return (
-    <section className="ar-section" style={{ position: 'relative', overflow: 'hidden', paddingBlock: 'clamp(48px,6vw,90px)' }}>
-      <window.CodePulseBackground rows={12} />
-      <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, var(--bg-page) 0%, transparent 16%, transparent 84%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
-      <div className="ar-container" style={{ position: 'relative' }}>
-        <Card tone="raised" padding="lg" radius="2xl" style={{ display: 'flex', gap: 28, alignItems: 'center', flexWrap: 'wrap' }}>
-          <span style={{ display: 'grid', placeItems: 'center', width: 84, height: 84, borderRadius: 'var(--radius-lg)', background: 'var(--accent-quiet)', border: '1px solid var(--border-accent)', color: 'var(--text-accent)', flex: '0 0 84px' }}>
-            <Icon name="shield-check" size={34} />
+    <section className="ar-section" style={{ position: 'relative', overflow: 'hidden', paddingBlock: 'clamp(64px,11vw,150px)' }}>
+      <window.CodePulseBackground rows={16} />
+      <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, var(--bg-page) 0%, transparent 20%, transparent 80%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
+      <div className="ar-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 18, maxWidth: 640, marginInline: 'auto' }}>
+        <span style={{ position: 'relative', display: 'grid', placeItems: 'center', width: 76, height: 76 }}>
+          <span aria-hidden="true" className="ar-pulse-ring" style={{ borderColor: 'var(--text-accent)' }} />
+          <span aria-hidden="true" className="ar-pulse-ring" style={{ borderColor: 'var(--text-accent)', animationDelay: '1.3s' }} />
+          <span style={{ position: 'relative', display: 'grid', placeItems: 'center', width: 76, height: 76, borderRadius: '50%', background: 'var(--accent-quiet)', border: '1px solid var(--border-accent)', color: 'var(--text-accent)', boxShadow: '0 0 44px rgba(160,144,255,.35)' }}>
+            <Icon name="shield-check" size={30} />
           </span>
-          <div style={{ flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <h3 style={{ fontSize: 'var(--text-h3)' }}>7 dias para testar. O risco é meu.</h3>
-            <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-muted)', maxWidth: 620 }}>
-              Assista aos módulos, baixe o repositório, faça o primeiro deploy. Se em uma semana você achar que não era isso, responde o e-mail de compra e eu devolvo os R$197. Sem formulário, sem pergunta de retenção.
-            </p>
-          </div>
-        </Card>
+        </span>
+        <Badge tone="glass" size="sm">Garantia</Badge>
+        <h3 style={{ fontSize: 'var(--text-h3)' }}>7 dias para testar. O risco é meu.</h3>
+        <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-muted)' }}>
+          Assista aos módulos, baixe o repositório, faça o primeiro deploy. Se em uma semana você achar que não era isso, responde o e-mail de compra e eu devolvo os R$197. Sem formulário, sem pergunta de retenção.
+        </p>
       </div>
     </section>
   );
