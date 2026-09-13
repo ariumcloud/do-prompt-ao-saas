@@ -48,7 +48,7 @@ function Offer() {
           </Card>
 
           <Card tone="accent" padding="lg" radius="xl" style={{ display: 'flex', flexDirection: 'column', gap: 20, boxShadow: 'var(--shadow-accent-strong)' }}>
-            <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(90% 70% at 20% 0%, rgba(254,253,255,.30) 0%, rgba(254,253,255,0) 60%)', pointerEvents: 'none' }} />
+            <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(120% 90% at 20% 0%, rgba(254,253,255,.14) 0%, rgba(254,253,255,0) 85%)', pointerEvents: 'none' }} />
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <Wordmark size={18} />
               <Badge tone="glass" size="sm">ACESSO IMEDIATO</Badge>
