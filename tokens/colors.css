@@ -1,0 +1,86 @@
+:root{
+  /* ---- Base palette ---------------------------------------------------- */
+  /* Violet — the single brand accent. 500 is the documented Primary. */
+  --ar-violet-100:#EDEAFF;
+  --ar-violet-200:#D6CFFF;
+  --ar-violet-300:#B3A7FF;
+  --ar-violet-400:#8C7AFF;
+  --ar-violet-500:#614DFF;
+  --ar-violet-600:#4E39F0;
+  --ar-violet-700:#3B29C4;
+  --ar-violet-800:#271B84;
+  --ar-violet-900:#151046;
+  --ar-violet-950:#0D0A2A;
+
+  /* Ink — near-black neutrals, cooled very slightly toward blue */
+  --ar-ink-0:#060607;
+  --ar-ink-1:#0B0B0D;
+  --ar-ink-2:#101013;
+  --ar-ink-3:#16161A;
+  --ar-ink-4:#1D1D22;
+  --ar-ink-5:#26262D;
+
+  /* Chalk — light neutrals */
+  --ar-chalk-0:#FEFDFF;
+  --ar-chalk-1:#E7E6EC;
+  --ar-chalk-2:#C4C2CE;
+  --ar-chalk-3:#9B99A6;
+  --ar-chalk-4:#6E6C7A;
+  --ar-chalk-5:#4A4955;
+
+  /* Signal */
+  --ar-mint-500:#2ED3A7;
+  --ar-rose-500:#FF4D6A;
+  --ar-amber-500:#F5A524;
+
+  /* Alphas — every border and scrim in the system is an alpha of chalk */
+  --ar-alpha-4:rgba(254,253,255,.04);
+  --ar-alpha-6:rgba(254,253,255,.06);
+  --ar-alpha-10:rgba(254,253,255,.10);
+  --ar-alpha-16:rgba(254,253,255,.16);
+  --ar-alpha-28:rgba(254,253,255,.28);
+  --ar-violet-alpha-12:rgba(97,77,255,.12);
+  --ar-violet-alpha-24:rgba(97,77,255,.24);
+  --ar-violet-alpha-40:rgba(97,77,255,.40);
+
+  /* ---- Semantic aliases ------------------------------------------------ */
+  --bg-page:var(--ar-ink-0);
+  --bg-raised:var(--ar-ink-1);
+  --bg-card:var(--ar-ink-2);
+  --bg-card-hover:var(--ar-ink-3);
+  --bg-inset:var(--ar-ink-3);
+  --bg-input:var(--ar-ink-3);
+  --bg-scrim:rgba(6,6,7,.72);
+
+  --surface-light:var(--ar-chalk-0);
+
+  --text-primary:var(--ar-chalk-0);
+  --text-secondary:var(--ar-chalk-2);
+  --text-muted:var(--ar-chalk-3);
+  --text-faint:var(--ar-chalk-4);
+  --text-accent:var(--ar-violet-400);
+  --text-on-accent:var(--ar-chalk-0);
+  --text-inverse:var(--ar-ink-0);
+
+  --accent:var(--ar-violet-500);
+  --accent-hover:var(--ar-violet-400);
+  --accent-press:var(--ar-violet-600);
+  --accent-quiet:var(--ar-violet-alpha-12);
+
+  --border-subtle:var(--ar-alpha-6);
+  --border-default:var(--ar-alpha-10);
+  --border-strong:var(--ar-alpha-16);
+  --border-accent:var(--ar-violet-alpha-40);
+
+  --signal-positive:var(--ar-mint-500);
+  --signal-negative:var(--ar-rose-500);
+  --signal-caution:var(--ar-amber-500);
+
+  /* ---- Atmosphere ------------------------------------------------------ */
+  /* The house background: a violet light source bleeding in from above. */
+  --glow-hero:radial-gradient(120% 80% at 50% -10%, #8C7AFF 0%, #614DFF 22%, #2A1D7A 48%, #0A0813 72%, #060607 100%); /* @kind color */
+  --glow-soft:radial-gradient(60% 60% at 50% 0%, rgba(97,77,255,.38) 0%, rgba(97,77,255,0) 70%); /* @kind color */
+  --glow-card:radial-gradient(120% 120% at 50% 130%, rgba(140,122,255,.55) 0%, rgba(97,77,255,.18) 40%, rgba(97,77,255,0) 72%); /* @kind color */
+  --gradient-accent:linear-gradient(180deg,#7362FF 0%,#614DFF 55%,#4E39F0 100%); /* @kind color */
+  --gradient-chrome:linear-gradient(180deg,#FEFDFF 0%,#9B99A6 100%); /* @kind color */
+}

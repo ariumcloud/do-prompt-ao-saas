@@ -1,0 +1,5 @@
+/* Arium ships one typeface: Sora (variable, 100-800).
+   Served from Google Fonts. Self-host by dropping the woff2 files into
+   assets/fonts/ and swapping the @import for local @font-face rules. */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");

@@ -1,0 +1,12 @@
+:root{
+  /* Arium does not use drop shadows to lift surfaces — darkness plus a
+     1px alpha border does that. Shadows exist only as coloured light. */
+  --shadow-none:none;
+  --shadow-inset-hairline:inset 0 1px 0 0 rgba(254,253,255,.06);
+  --shadow-card:0 1px 0 0 rgba(254,253,255,.04) inset, 0 24px 60px -30px rgba(0,0,0,.9);
+  --shadow-accent:0 18px 48px -18px rgba(97,77,255,.65);
+  --shadow-accent-strong:0 26px 80px -20px rgba(97,77,255,.85);
+  --shadow-lift:0 32px 90px -40px rgba(0,0,0,1);
+  --blur-glass:blur(18px); /* @kind other */
+  --blur-heavy:blur(64px); /* @kind other */
+}

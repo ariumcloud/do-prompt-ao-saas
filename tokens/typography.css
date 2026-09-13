@@ -1,0 +1,40 @@
+:root{
+  --font-core:"Sora","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --weight-light:300; /* @kind font */
+  --weight-regular:400; /* @kind font */
+  --weight-medium:500; /* @kind font */
+  --weight-semibold:600; /* @kind font */
+  --weight-bold:700; /* @kind font */
+
+  /* Display — hero and section openers. Tight, optically negative tracking. */
+  --text-display-1:clamp(44px,6.4vw,92px);
+  --text-display-2:clamp(36px,4.6vw,64px);
+  --text-display-3:clamp(30px,3.2vw,46px);
+  --lh-display:1.06; /* @kind font */
+  --tracking-display:-.035em; /* @kind font */
+
+  /* Headings */
+  --text-h1:34px;
+  --text-h2:28px;
+  --text-h3:22px;
+  --text-h4:18px;
+  --lh-heading:1.22; /* @kind font */
+  --tracking-heading:-.02em; /* @kind font */
+
+  /* Body */
+  --text-body-lg:18px;
+  --text-body:16px;
+  --text-body-sm:14px;
+  --lh-body:1.6; /* @kind font */
+  --tracking-body:-.005em; /* @kind font */
+
+  /* Utility */
+  --text-label:13px;
+  --text-caption:12px;
+  --text-micro:11px;
+  --lh-tight:1.35; /* @kind font */
+  --tracking-label:0; /* @kind font */
+  --tracking-eyebrow:.02em; /* @kind font */
+}
