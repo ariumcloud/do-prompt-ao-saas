@@ -10,7 +10,7 @@ function Proof() {
           title="Eu não ensino o que li. Ensino o que está rodando."
           highlight="o que está rodando"
         />
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.1fr) minmax(0,.9fr)', gap: 20, marginTop: 48, alignItems: 'stretch' }}>
+        <div className="ar-grid-2col" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.1fr) minmax(0,.9fr)', gap: 20, marginTop: 48, alignItems: 'stretch' }}>
           <Card padding="lg" radius="xl" tone="raised" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <Badge tone="accent" dot>cabin · em produção</Badge>
             <p style={{ fontSize: 'var(--text-body-lg)', lineHeight: 'var(--lh-body)', color: 'var(--text-secondary)' }}>

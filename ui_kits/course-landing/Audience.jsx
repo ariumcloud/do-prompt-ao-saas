@@ -17,7 +17,7 @@ const ariumAudienceNot = [
 function AudienceList({ tone, title, items }) {
   const positive = tone === 'for';
   return (
-    <Card padding="lg" radius="xl" tone={positive ? 'glow' : 'default'} style={{ height: '100%' }}>
+    <Card padding="md" radius="xl" tone={positive ? 'glow' : 'default'} style={{ height: '100%' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 22 }}>
         <Badge tone={positive ? 'accent' : 'neutral'}>{positive ? 'É para você' : 'Não é para você'}</Badge>
       </div>
