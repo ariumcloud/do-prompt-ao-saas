@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/ui_kits/course-landing/index.html", "permanent": false }
+  ]
+}
