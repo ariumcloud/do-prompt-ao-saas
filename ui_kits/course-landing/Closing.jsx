@@ -7,29 +7,36 @@ function Guarantee() {
         <div
           style={{
             position: 'relative',
-            overflow: 'hidden',
             padding: 'clamp(56px,9vw,110px) clamp(24px,6vw,48px)',
           }}
         >
-          {/* Organic breathing glow instead of a geometric card edge — a blob
-              with asymmetric, slowly-morphing corner radii that scales and
-              fades in and out, like it's pulsing from the inside. */}
-          <span
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              width: 'min(92%, 920px)',
-              aspectRatio: '16/10',
-              background: 'radial-gradient(circle, rgba(130,110,255,.4) 0%, rgba(90,70,210,.18) 48%, transparent 76%)',
-              filter: 'blur(38px)',
-              animation: 'ar-blob-breathe 5.5s ease-in-out infinite, ar-blob-morph 10s ease-in-out infinite',
-              pointerEvents: 'none',
-            }}
-          />
-          <window.CodePulseBackground rows={14} />
-          <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 0%, rgba(6,6,7,.4) 50%, transparent 100%), radial-gradient(60% 90% at 50% 50%, transparent 40%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
+          {/* Three organic glows at staggered delays instead of one synced
+              blob — each breathes and morphs on its own clock, so together
+              they read as a wave of pulses radiating outward rather than a
+              single shape flexing in place. Sits outside the clipped layer
+              below so nothing crops it flat at the top or sides. */}
+          {[0, 1.8, 3.6].map((delay, i) => (
+            <span
+              key={i}
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                left: '50%',
+                top: '50%',
+                width: `${74 - i * 10}%`,
+                maxWidth: 920 - i * 160,
+                aspectRatio: '16/10',
+                background: 'radial-gradient(circle, rgba(130,110,255,.4) 0%, rgba(90,70,210,.18) 48%, transparent 76%)',
+                filter: 'blur(38px)',
+                animation: `ar-blob-breathe 5.5s ease-in-out ${delay}s infinite, ar-blob-morph 10s ease-in-out ${delay}s infinite`,
+                pointerEvents: 'none',
+              }}
+            />
+          ))}
+          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', borderRadius: 40 }}>
+            <window.CodePulseBackground rows={14} />
+            <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 0%, rgba(6,6,7,.4) 50%, transparent 100%), radial-gradient(60% 90% at 50% 50%, transparent 40%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
+          </div>
           <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 18, maxWidth: 560, marginInline: 'auto' }}>
             <span style={{ position: 'relative', display: 'grid', placeItems: 'center', width: 76, height: 76 }}>
               <span aria-hidden="true" className="ar-pulse-ring" style={{ borderColor: 'var(--text-accent)' }} />
