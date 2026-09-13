@@ -310,4 +310,51 @@ function GridBeamOverlay({ gridRef }) {
   );
 }
 
-Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap, ColorSweepHeading, GridBeamOverlay, WindowTitlebar });
+// Ambient rows of hex-like text with a handful of characters per line
+// pulsing independently — a background texture for sections about trust /
+// security (encryption, guarantees), not meant to be read. Lines and which
+// characters glow are randomized once per mount and never re-rolled, so the
+// layout doesn't jitter on re-render.
+function CodePulseBackground({ rows = 10 }) {
+  const linesRef = React.useRef(null);
+  if (!linesRef.current) {
+    const chars = '0123456789abcdefABCDEF';
+    const randChunk = (len) => Array.from({ length: len }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    const randomLine = (targetLen) => {
+      let s = '';
+      while (s.length < targetLen) s += randChunk(4 + Math.floor(Math.random() * 8)) + '  :  ';
+      return s.slice(0, targetLen).split('').map((ch) => ({ ch, bright: Math.random() < 0.05 }));
+    };
+    linesRef.current = Array.from({ length: rows }, () => randomLine(200));
+  }
+
+  if (arReduced) return null;
+
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        gap: 10,
+      }}
+    >
+      {linesRef.current.map((line, i) => (
+        <div key={i} style={{ whiteSpace: 'nowrap', fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '.03em', color: 'rgba(160,144,255,.14)' }}>
+          {line.map((c, j) => (
+            c.bright ? (
+              <span key={j} style={{ color: 'rgba(217,214,255,.9)', animation: `ar-code-pulse ${1.6 + (j % 5) * 0.3}s ease-in-out ${(j % 7) * 0.25}s infinite` }}>{c.ch}</span>
+            ) : c.ch
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap, ColorSweepHeading, GridBeamOverlay, WindowTitlebar, CodePulseBackground });

@@ -2,8 +2,10 @@ const { Card, Badge, Button, SectionHeading, Accordion, Icon, Wordmark, Input } 
 
 function Guarantee() {
   return (
-    <section className="ar-section" style={{ paddingBlock: 'clamp(48px,6vw,90px)' }}>
-      <div className="ar-container">
+    <section className="ar-section" style={{ position: 'relative', overflow: 'hidden', paddingBlock: 'clamp(48px,6vw,90px)' }}>
+      <window.CodePulseBackground rows={12} />
+      <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, var(--bg-page) 0%, transparent 16%, transparent 84%, var(--bg-page) 100%)', pointerEvents: 'none' }} />
+      <div className="ar-container" style={{ position: 'relative' }}>
         <Card tone="raised" padding="lg" radius="2xl" style={{ display: 'flex', gap: 28, alignItems: 'center', flexWrap: 'wrap' }}>
           <span style={{ display: 'grid', placeItems: 'center', width: 84, height: 84, borderRadius: 'var(--radius-lg)', background: 'var(--accent-quiet)', border: '1px solid var(--border-accent)', color: 'var(--text-accent)', flex: '0 0 84px' }}>
             <Icon name="shield-check" size={34} />
