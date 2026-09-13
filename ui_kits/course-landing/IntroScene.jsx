@@ -3,11 +3,17 @@ const { Button, Wordmark } = window.AriumDesignSystem_4c6a30 || {};
 const introSeenKey = 'ar_intro_seen_v1';
 
 // The camera settles into a centered composition with empty space below the
-// laptop from ~6.8s on (source clip is 8s, assets/intro-video.mp4).
+// laptop from ~6.8s on in both clips (each is an 8s loop).
 const CTA_START = 6.8;
 
 function IntroScene() {
   const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Computed at component-render time (not module-eval time): the page's
+  // layout is guaranteed settled by then, whereas a top-level `matchMedia`
+  // check can run before the viewport has real dimensions and misfire.
+  const isMobileViewport = window.innerWidth <= 768;
+  const videoSrc = isMobileViewport ? 'assets/intro-video-mobile.mp4' : 'assets/intro-video.mp4';
+  const posterSrc = isMobileViewport ? 'assets/intro-poster-mobile.jpg' : 'assets/intro-poster.jpg';
   const [visible, setVisible] = React.useState(() => {
     try { return !localStorage.getItem(introSeenKey); } catch (e) { return true; }
   });
@@ -65,8 +71,8 @@ function IntroScene() {
       {showVideo ? (
         <video
           ref={videoRef}
-          src="assets/intro-video.mp4"
-          poster="assets/intro-poster.jpg"
+          src={videoSrc}
+          poster={posterSrc}
           autoPlay
           muted
           playsInline
@@ -77,7 +83,7 @@ function IntroScene() {
         />
       ) : (
         <img
-          src="assets/intro-poster.jpg"
+          src={posterSrc}
           alt=""
           aria-hidden="true"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
