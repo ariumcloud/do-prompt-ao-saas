@@ -3,7 +3,12 @@
 // with a mouse-reactive "comb" pull. Shared by any section that wants it as a backdrop.
 const { useEffect, useRef } = React;
 
-const arFibreMaxDpr = 2;
+// Capped below native retina resolution (2x) on purpose: the shader's cost
+// scales with canvas pixel count, and a desktop hero section is far wider
+// than a phone viewport, so the same effect is proportionally heavier there.
+// 1.5x keeps enough supersampling to avoid visible jaggies on the thin light
+// strands (the canvas has antialias:false) while cutting pixel count ~1.8x.
+const arFibreMaxDpr = 1.5;
 
 const arFibreVert = `
 attribute vec2 a_pos;
