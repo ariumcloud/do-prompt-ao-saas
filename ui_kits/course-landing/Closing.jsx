@@ -65,13 +65,15 @@ function Closing() {
         <window.TerminalType
           as="h2"
           lines={['A ideia continua na sua cabeça', 'ou entra no ar este mês.']}
-          style={{ margin: 0, maxWidth: 900, fontFamily: 'var(--font-serif)', fontSize: 'var(--text-display-1)', lineHeight: 'var(--lh-display)', letterSpacing: '-0.01em', fontWeight: '600' }}
+          style={{ margin: 0, maxWidth: 900, fontFamily: 'var(--font-serif)', fontSize: 'var(--text-display-1)', lineHeight: 'var(--lh-display)', letterSpacing: '-0.01em', fontWeight: '600', textShadow: '0 4px 28px rgba(0,0,0,.65), 0 1px 4px rgba(0,0,0,.85)' }}
         />
         <p style={{ maxWidth: 560, fontSize: 'var(--text-body-lg)', color: 'rgba(254,253,255,.82)', lineHeight: 'var(--lh-body)' }}>
           R$197, acesso vitalício, 7 dias de garantia. O único jeito de descobrir se funciona é abrir o primeiro módulo.
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Button size="lg" href="#preco" className="ar-beam-btn" iconRight={<Icon name="arrow-right" size={16} />}>Começar por R$197</Button>
+          <window.BeamWrap>
+            <Button size="lg" href="#preco" iconRight={<Icon name="arrow-right" size={16} />}>Começar por R$197</Button>
+          </window.BeamWrap>
         </div>
       </div>
     </section>

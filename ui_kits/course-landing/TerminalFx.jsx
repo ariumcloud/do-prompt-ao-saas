@@ -129,4 +129,9 @@ function arInitReveal() {
   });
 }
 
-Object.assign(window, { TerminalType, TerminalCursor, arInitReveal });
+// Wraps a button with a spinning conic-gradient rim (see .ar-beam-wrap in index.html).
+function BeamWrap({ children, style }) {
+  return <span className="ar-beam-wrap" style={style}>{children}</span>;
+}
+
+Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap });

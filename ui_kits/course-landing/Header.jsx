@@ -35,7 +35,9 @@ function Header() {
           actions={
             <React.Fragment>
               <Button variant="ghost" size="sm" href="#faq" className="ar-hide-sm">Dúvidas</Button>
-              <Button size="sm" href="#preco" className="ar-beam-btn">Garantir vaga</Button>
+              <window.BeamWrap>
+                <Button size="sm" href="#preco">Garantir vaga</Button>
+              </window.BeamWrap>
             </React.Fragment>
           }
         />

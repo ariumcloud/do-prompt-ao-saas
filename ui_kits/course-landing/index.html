@@ -26,22 +26,25 @@ body{background:var(--bg-page);overflow-x:hidden}
   border:1px solid var(--text-accent,#A090FF);
   animation:ar-pulse-ring 2.6s cubic-bezier(.2,.6,.35,1) infinite;
 }
-/* Border beam: a thin light ring that travels around a button's own edge,
-   drawn with a double-mask so only the ring (not the fill) is painted. */
-.ar-beam-btn{position:relative}
-.ar-beam-btn::before{
+/* Border beam: a conic-gradient ring spinning behind the button; the button's
+   own opaque fill covers the center, leaving only a thin rotating rim of light. */
+.ar-beam-wrap{
+  position:relative;
+  display:inline-flex;
+  border-radius:calc(var(--radius-sm) + 2px);
+  padding:2px;
+  isolation:isolate;
+}
+.ar-beam-wrap::before{
   content:"";
   position:absolute;
-  inset:-2px;
+  inset:0;
   border-radius:inherit;
-  padding:2px;
-  background:conic-gradient(from 0deg, transparent 0%, rgba(254,253,255,.95) 6%, var(--text-accent,#A090FF) 14%, transparent 26%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask-composite:exclude;
+  background:conic-gradient(from 0deg, transparent 0%, rgba(254,253,255,.95) 5%, var(--text-accent,#A090FF) 12%, transparent 22%);
   animation:ar-beam-spin 3.2s linear infinite;
-  pointer-events:none;
+  z-index:0;
 }
+.ar-beam-wrap > *{ position:relative; z-index:1; }
 @keyframes ar-beam-spin{to{transform:rotate(360deg)}}
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>

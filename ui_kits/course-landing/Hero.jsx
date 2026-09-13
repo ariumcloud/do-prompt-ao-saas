@@ -34,13 +34,16 @@ function Hero() {
             lineHeight: 'var(--lh-display)',
             letterSpacing: 'var(--tracking-display)',
             fontWeight: 'var(--weight-semibold)',
+            textShadow: '0 4px 28px rgba(0,0,0,.65), 0 1px 4px rgba(0,0,0,.85)',
           }}
         />
         <p style={{ maxWidth: 620, fontSize: 'var(--text-body-lg)', lineHeight: 'var(--lh-body)', color: 'rgba(254,253,255,.82)' }}>
           Do Prompt ao SaaS é o curso que te leva da ideia ao primeiro pagamento aprovado usando IA generativa como par de programação. Seis módulos, um produto publicado no fim.
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 6 }}>
-          <Button size="lg" href="#preco" className="ar-beam-btn">Quero acesso por R$197</Button>
+          <window.BeamWrap>
+            <Button size="lg" href="#preco">Quero acesso por R$197</Button>
+          </window.BeamWrap>
           <Button size="lg" variant="secondary" href="#modulos" iconLeft={<Icon name="list" size={16} />}>Ver os 6 módulos</Button>
         </div>
         <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', justifyContent: 'center', fontSize: 'var(--text-caption)', color: 'rgba(254,253,255,.66)' }}>
