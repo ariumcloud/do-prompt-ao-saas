@@ -26,6 +26,8 @@ body{background:var(--bg-page);overflow-x:hidden}
   border:1px solid var(--text-accent,#A090FF);
   animation:ar-pulse-ring 2.6s cubic-bezier(.2,.6,.35,1) infinite;
 }
+@keyframes ar-grid-beam-v{to{background-position:0% 100%}}
+@keyframes ar-grid-beam-h{to{background-position:100% 0%}}
 /* Border beam: a blurred conic-gradient spinning behind the button, clipped by
    overflow:hidden on the wrap so the blur can never escape past the pill's own
    rounded edge, no matter the gradient's current angle. No mask-composite

@@ -194,4 +194,88 @@ function BeamWrap({ children, style }) {
   return <span className="ar-beam-wrap" style={style}>{children}</span>;
 }
 
-Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap, ColorSweepHeading });
+// Traveling light along a CSS grid's real seams — reads the browser's own
+// resolved gridTemplateColumns/Rows (not the auto-fit/1fr source values) so
+// divider positions stay correct across breakpoints without reimplementing
+// grid math. A ResizeObserver re-measures when the column count changes.
+function GridBeamOverlay({ gridRef }) {
+  const [lines, setLines] = React.useState({ v: [], h: [], w: 0, ht: 0 });
+
+  React.useEffect(() => {
+    if (arReduced) return;
+    const measure = () => {
+      const grid = gridRef.current;
+      if (!grid) return;
+      const cs = getComputedStyle(grid);
+      const colGap = parseFloat(cs.columnGap) || 0;
+      const rowGap = parseFloat(cs.rowGap) || 0;
+      const cols = cs.gridTemplateColumns.split(' ').map(parseFloat).filter((n) => !isNaN(n));
+      const rows = cs.gridTemplateRows.split(' ').map(parseFloat).filter((n) => !isNaN(n));
+
+      const v = [];
+      let x = 0;
+      cols.forEach((w, i) => {
+        x += w;
+        if (i < cols.length - 1) { v.push(x + colGap / 2); x += colGap; }
+      });
+      const h = [];
+      let y = 0;
+      rows.forEach((rh, i) => {
+        y += rh;
+        if (i < rows.length - 1) { h.push(y + rowGap / 2); y += rowGap; }
+      });
+      setLines({ v, h, w: grid.offsetWidth, ht: grid.offsetHeight });
+    };
+
+    measure();
+    const ro = ('ResizeObserver' in window) ? new ResizeObserver(measure) : null;
+    if (ro && gridRef.current) ro.observe(gridRef.current);
+    window.addEventListener('resize', measure);
+    return () => { if (ro) ro.disconnect(); window.removeEventListener('resize', measure); };
+  }, [gridRef]);
+
+  if (arReduced || (!lines.v.length && !lines.h.length)) return null;
+
+  return (
+    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+      {lines.v.map((x, i) => (
+        <span
+          key={'v' + i}
+          style={{
+            position: 'absolute',
+            left: x,
+            top: 0,
+            width: 1,
+            height: lines.ht,
+            backgroundImage: 'linear-gradient(180deg, transparent 0%, var(--text-accent, #A090FF) 46%, rgba(254,253,255,.9) 50%, var(--text-accent, #A090FF) 54%, transparent 100%)',
+            backgroundSize: '100% 400%',
+            backgroundPosition: '0% 0%',
+            animation: 'ar-grid-beam-v 3.2s linear infinite',
+            animationDelay: `${i * 0.6}s`,
+            opacity: 0.7,
+          }}
+        />
+      ))}
+      {lines.h.map((y, i) => (
+        <span
+          key={'h' + i}
+          style={{
+            position: 'absolute',
+            top: y,
+            left: 0,
+            height: 1,
+            width: lines.w,
+            backgroundImage: 'linear-gradient(90deg, transparent 0%, var(--text-accent, #A090FF) 46%, rgba(254,253,255,.9) 50%, var(--text-accent, #A090FF) 54%, transparent 100%)',
+            backgroundSize: '400% 100%',
+            backgroundPosition: '0% 0%',
+            animation: 'ar-grid-beam-h 3.2s linear infinite',
+            animationDelay: `${i * 0.6 + 0.3}s`,
+            opacity: 0.7,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap, ColorSweepHeading, GridBeamOverlay });

@@ -29,7 +29,7 @@ function Proof() {
             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
                 { icon: 'users', k: 'Clientes reais', v: 'contas separadas, dados isolados' },
-                { icon: 'credit-card', k: 'Mercado Pago', v: 'assinatura + webhook em produção' },
+                { icon: 'credit-card', k: 'Gateway de pagamento', v: 'assinatura + webhook em produção' },
                 { icon: 'shield-check', k: 'Auth e permissões', v: 'Supabase RLS por tenant' },
                 { icon: 'globe', k: 'Deploy', v: 'domínio próprio na Vercel' },
               ].map((r) => (

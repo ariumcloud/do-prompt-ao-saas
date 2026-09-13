@@ -67,7 +67,7 @@ function Offer() {
               </Button>
             </window.BeamWrap>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 'var(--text-caption)', color: 'rgba(254,253,255,.78)' }}>
-              <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center' }}><Icon name="lock" size={14} />Pagamento seguro via Mercado Pago</span>
+              <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center' }}><Icon name="lock" size={14} />Pagamento processado com segurança</span>
               <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center' }}><Icon name="zap" size={14} />Acesso liberado em minutos</span>
             </div>
           </Card>
