@@ -9,6 +9,7 @@
 <style>
 html{scroll-behavior:smooth}
 body{background:var(--bg-page);overflow-x:hidden}
+body.ar-intro-lock{overflow-y:hidden}
 .ar-container{width:100%;max-width:var(--container-max);margin-inline:auto;padding-inline:var(--gutter)}
 .ar-section{padding-block:var(--section-y)}
 @media (max-width:860px){.ar-hide-sm{display:none!important}}
@@ -29,6 +30,8 @@ body{background:var(--bg-page);overflow-x:hidden}
 }
 @keyframes ar-grid-beam-v{to{background-position:0% 100%}}
 @keyframes ar-grid-beam-h{to{background-position:100% 0%}}
+@keyframes ar-intro-pop{to{opacity:1}}
+@keyframes ar-intro-bar{to{opacity:1;transform:scaleY(1)}}
 /* Border beam: a blurred conic-gradient spinning behind the button, clipped by
    overflow:hidden on the wrap so the blur can never escape past the pill's own
    rounded edge, no matter the gradient's current angle. No mask-composite
@@ -63,6 +66,7 @@ body{background:var(--bg-page);overflow-x:hidden}
 <body>
 <div id="root"></div>
 <script src="TerminalFx.js"></script>
+<script src="IntroScene.js"></script>
 <script src="FibreArc.js"></script>
 <script src="Header.js"></script>
 <script src="Hero.js"></script>
@@ -79,11 +83,12 @@ if (!window.AriumDesignSystem_4c6a30) {
     'Esta página precisa de <code>_ds_bundle.js</code> na raiz do projeto. Abra-a de dentro do design system Arium.</div></div>';
   throw new Error('_ds_bundle.js missing');
 }
-const { Header, Hero, Audience, Modules, Proof, Offer, Guarantee, Faq, Closing, SiteFooter } = window;
+const { Header, Hero, Audience, Modules, Proof, Offer, Guarantee, Faq, Closing, SiteFooter, IntroScene } = window;
 function App() {
   return React.createElement(
     React.Fragment,
     null,
+    IntroScene && React.createElement(IntroScene),
     React.createElement(Header),
     React.createElement(
       'main',
