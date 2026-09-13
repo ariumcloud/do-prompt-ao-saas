@@ -20,6 +20,7 @@ function IntroScene() {
   const [closing, setClosing] = React.useState(false);
   const [ctaVisible, setCtaVisible] = React.useState(reduced);
   const [videoFailed, setVideoFailed] = React.useState(false);
+  const [videoPlaying, setVideoPlaying] = React.useState(false);
   const videoRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -68,25 +69,36 @@ function IntroScene() {
         pointerEvents: closing ? 'none' : 'auto',
       }}
     >
-      {showVideo ? (
+      {/* The poster sits underneath as its own layer and stays put; the video
+          fades in over it once frames actually start rendering (the
+          'playing' event), so any buffering delay before that reads as a
+          calm crossfade instead of the browser's raw poster-to-frame pop. */}
+      <img
+        src={posterSrc}
+        alt=""
+        aria-hidden="true"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+      />
+      {showVideo && (
         <video
           ref={videoRef}
           src={videoSrc}
-          poster={posterSrc}
           autoPlay
           muted
           playsInline
           preload="auto"
+          onPlaying={() => setVideoPlaying(true)}
           onEnded={() => setCtaVisible(true)}
           onError={() => { setVideoFailed(true); setCtaVisible(true); }}
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      ) : (
-        <img
-          src={posterSrc}
-          alt=""
-          aria-hidden="true"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: videoPlaying ? 1 : 0,
+            transition: 'opacity .5s ease',
+          }}
         />
       )}
 
@@ -95,18 +107,26 @@ function IntroScene() {
           position: 'absolute',
           left: '50%',
           bottom: '9%',
-          transform: ctaVisible ? 'translate(-50%,0)' : 'translate(-50%,14px)',
+          transform: ctaVisible ? 'translate(-50%,0) scale(1)' : 'translate(-50%,14px) scale(.92)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: 18,
           opacity: ctaVisible ? 1 : 0,
-          transition: 'opacity .6s ease, transform .6s ease',
+          transition: 'opacity .6s ease, transform .6s cubic-bezier(.34,1.56,.64,1)',
           pointerEvents: ctaVisible ? 'auto' : 'none',
         }}
       >
         {Wordmark && <Wordmark size={20} />}
-        {Button && <Button size="lg" onClick={dismiss}>Começar</Button>}
+        {Button && (
+          window.BeamWrap ? (
+            <window.BeamWrap>
+              <Button size="lg" onClick={dismiss}>Começar</Button>
+            </window.BeamWrap>
+          ) : (
+            <Button size="lg" onClick={dismiss}>Começar</Button>
+          )
+        )}
       </div>
     </div>
   );
