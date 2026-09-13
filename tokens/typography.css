@@ -11,7 +11,7 @@
   --weight-bold:700; /* @kind font */
 
   /* Display — hero and section openers. Tight, optically negative tracking. */
-  --text-display-1:clamp(42px,7vw,68px);
+  --text-display-1:clamp(40px,4vw + 24px,68px);
   --text-display-2:clamp(30px,3.6vw,48px);
   --text-display-3:clamp(26px,2.6vw,36px);
   --lh-display:1.06; /* @kind font */
