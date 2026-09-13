@@ -194,6 +194,38 @@ function BeamWrap({ children, style }) {
   return <span className="ar-beam-wrap" style={style}>{children}</span>;
 }
 
+// Card chrome styled like an editor tab — window dots + filename — so a card
+// reads as a small IDE window instead of a generic content box. `variant`
+// swaps the chrome for light-on-dark-violet when the card itself is an
+// accent-toned (violet gradient) surface; `highlight` lights up the small
+// dot beside the filename for a card that should stand out from its peers.
+function WindowTitlebar({ file, variant = 'default', highlight = false }) {
+  const accent = variant === 'accent';
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 12,
+        padding: '10px 16px',
+        borderBottom: accent ? '1px solid rgba(254,253,255,.16)' : '1px solid var(--border-subtle)',
+        background: accent ? 'rgba(254,253,255,.06)' : 'rgba(254,253,255,.02)',
+      }}
+    >
+      <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        {[0, 1, 2].map((i) => (
+          <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: accent ? 'rgba(254,253,255,.35)' : 'rgba(254,253,255,.16)' }} />
+        ))}
+      </span>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 11, color: accent ? 'rgba(254,253,255,.75)' : 'var(--text-faint)', letterSpacing: '-0.01em' }}>
+        <span style={{ width: 6, height: 6, borderRadius: '50%', background: highlight ? (accent ? '#FEFDFF' : 'var(--text-accent)') : (accent ? 'rgba(254,253,255,.35)' : 'var(--text-faint)'), flex: '0 0 auto' }} />
+        {file}
+      </span>
+    </div>
+  );
+}
+
 // Traveling light along a CSS grid's real seams — reads the browser's own
 // resolved gridTemplateColumns/Rows (not the auto-fit/1fr source values) so
 // divider positions stay correct across breakpoints without reimplementing
@@ -278,4 +310,4 @@ function GridBeamOverlay({ gridRef }) {
   );
 }
 
-Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap, ColorSweepHeading, GridBeamOverlay });
+Object.assign(window, { TerminalType, TerminalCursor, arInitReveal, BeamWrap, ColorSweepHeading, GridBeamOverlay, WindowTitlebar });

@@ -19,35 +19,6 @@ function ModuleIcon({ name, accent, size = 40 }) {
   );
 }
 
-// Card chrome styled like an editor tab — window dots + filename — so each
-// module reads as a small IDE window rather than a generic content card,
-// reinforcing the "vibe-coding" framing instead of just decorating it.
-function ModuleTitlebar({ file, accent }) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: 12,
-        padding: '10px 16px',
-        borderBottom: '1px solid var(--border-subtle)',
-        background: accent ? 'rgba(160,144,255,.06)' : 'rgba(254,253,255,.02)',
-      }}
-    >
-      <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-        {[0, 1, 2].map((i) => (
-          <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: 'rgba(254,253,255,.16)' }} />
-        ))}
-      </span>
-      <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-faint)', letterSpacing: '-0.01em' }}>
-        <span style={{ width: 6, height: 6, borderRadius: '50%', background: accent ? 'var(--text-accent)' : 'var(--text-faint)', flex: '0 0 auto' }} />
-        {file}
-      </span>
-    </div>
-  );
-}
-
 function Modules() {
   const gridRef = React.useRef(null);
   return (
@@ -70,7 +41,7 @@ function Modules() {
           <div ref={gridRef} data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(330px,1fr))', gap: 18 }}>
             {ariumModules.map((m, i) => (
               <Card key={m.n} interactive padding="none" radius="xl" tone={i === 4 ? 'glow' : 'default'} style={{ display: 'flex', flexDirection: 'column' }}>
-                <ModuleTitlebar file={m.file} accent={i === 4} />
+                <window.WindowTitlebar file={m.file} highlight={i === 4} />
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: 'var(--space-6, 24px)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <ModuleIcon name={m.icon} accent={i === 4} />
