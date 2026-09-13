@@ -9,10 +9,26 @@ const ariumModules = [
   { n: '06', icon: 'rocket', title: 'Publicando no ar', body: 'Domínio próprio, variáveis de ambiente, checklist de segurança e o deploy. Depois: como acompanhar erros e receber os primeiros usuários.', out: 'SaaS público, no seu domínio, aceitando pagamento.' },
 ];
 
+function ModuleIcon({ name, accent }) {
+  return (
+    <span style={{ position: 'relative', width: 40, height: 40, flex: '0 0 40px' }}>
+      <span aria-hidden="true" className="ar-pulse-ring" style={{ animationDelay: '0s', borderColor: accent ? 'var(--text-accent)' : 'rgba(254,253,255,.35)' }} />
+      <span aria-hidden="true" className="ar-pulse-ring" style={{ animationDelay: '.9s', borderColor: accent ? 'var(--text-accent)' : 'rgba(254,253,255,.35)' }} />
+      <IconTile tone={accent ? 'accent' : 'default'} style={{ position: 'relative' }}><Icon name={name} /></IconTile>
+    </span>
+  );
+}
+
 function Modules() {
   return (
-    <section id="modulos" className="ar-section" style={{ position: 'relative' }}>
+    <section id="modulos" className="ar-section" style={{ position: 'relative', overflow: 'hidden' }}>
       <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'var(--glow-soft)', opacity: .5, pointerEvents: 'none' }} />
+      {/* Ambient radar pulse centered behind the grid — slow, large, barely-there. */}
+      <span aria-hidden="true" style={{ position: 'absolute', left: '50%', top: '54%', width: 640, height: 640, transform: 'translate(-50%,-50%)', pointerEvents: 'none' }}>
+        <span className="ar-pulse-ring" style={{ animationDuration: '4.2s', animationDelay: '0s', borderColor: 'rgba(160,144,255,.25)' }} />
+        <span className="ar-pulse-ring" style={{ animationDuration: '4.2s', animationDelay: '1.4s', borderColor: 'rgba(160,144,255,.25)' }} />
+        <span className="ar-pulse-ring" style={{ animationDuration: '4.2s', animationDelay: '2.8s', borderColor: 'rgba(160,144,255,.25)' }} />
+      </span>
       <div className="ar-container" style={{ position: 'relative' }}>
         <SectionHeading
           eyebrow={<Badge tone="glass">Conteúdo</Badge>}
@@ -24,7 +40,7 @@ function Modules() {
           {ariumModules.map((m, i) => (
             <Card key={m.n} interactive padding="lg" radius="xl" tone={i === 4 ? 'glow' : 'default'} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <IconTile tone={i === 4 ? 'accent' : 'default'}><Icon name={m.icon} /></IconTile>
+                <ModuleIcon name={m.icon} accent={i === 4} />
                 <span style={{ fontSize: 28, fontWeight: 'var(--weight-light)', color: 'var(--text-faint)', letterSpacing: '-0.03em' }}>{m.n}</span>
               </div>
               <h3 style={{ fontSize: 'var(--text-h4)' }}>{m.title}</h3>

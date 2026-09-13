@@ -3,3 +3,8 @@
    assets/fonts/ and swapping the @import for local @font-face rules. */
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* Playfair Display: a deliberate, narrow exception to the one-typeface rule.
+   Reserved for the two "editorial" money-moments on the course landing page
+   (the price headline, the closing headline) — never for body copy or UI. */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap");

@@ -21,7 +21,7 @@ function Offer() {
       <div className="ar-container" style={{ position: 'relative' }}>
         <SectionHeading
           eyebrow={<Badge tone="glass">Oferta</Badge>}
-          title={<window.TerminalType lines={['Um pagamento. O curso inteiro. Para sempre.']} style={{ display: 'block' }} />}
+          title={<window.TerminalType lines={['Um pagamento. O curso inteiro. Para sempre.']} style={{ display: 'block', fontFamily: 'var(--font-serif)', letterSpacing: '-0.01em', fontWeight: '600' }} />}
         />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: 20, marginTop: 56, alignItems: 'stretch' }}>
           <Card padding="lg" radius="xl" style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
@@ -61,7 +61,7 @@ function Offer() {
             <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'rgba(254,253,255,.86)' }}>
               ou 12× de R$19,90 no cartão. Sem mensalidade, sem upsell obrigatório, sem curso avançado escondido.
             </p>
-            <Button size="lg" variant="secondary" fullWidth style={{ background: 'var(--ar-chalk-0)', color: 'var(--ar-ink-0)', border: '1px solid transparent', boxShadow: 'none', fontWeight: 'var(--weight-semibold)' }}>
+            <Button size="lg" variant="secondary" fullWidth className="ar-beam-btn" style={{ background: 'var(--ar-chalk-0)', color: 'var(--ar-ink-0)', border: '1px solid transparent', boxShadow: 'none', fontWeight: 'var(--weight-semibold)' }}>
               Comprar agora
             </Button>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 'var(--text-caption)', color: 'rgba(254,253,255,.78)' }}>

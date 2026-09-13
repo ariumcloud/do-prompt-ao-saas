@@ -17,13 +17,13 @@ function TerminalCursor({ active, size = '0.95em' }) {
       aria-hidden="true"
       style={{
         display: 'inline-block',
-        width: '0.07em',
-        minWidth: 2,
+        width: '0.1em',
+        minWidth: 3,
         height: size,
-        marginLeft: '0.08em',
-        verticalAlign: '-0.08em',
+        marginLeft: '0.1em',
+        verticalAlign: '-0.1em',
         background: 'var(--text-accent, #A090FF)',
-        boxShadow: '0 0 10px rgba(160,144,255,.75)',
+        boxShadow: '0 0 14px rgba(160,144,255,.95), 0 0 4px rgba(255,255,255,.6)',
         animation: active ? 'none' : 'ar-blink 1.05s step-end infinite',
       }}
     />

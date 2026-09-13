@@ -49,20 +49,29 @@ function Faq() {
 
 function Closing() {
   return (
-    <section id="mentoria" style={{ position: 'relative', paddingTop: 140, paddingBottom: 160, overflow: 'hidden', background: 'linear-gradient(180deg,#060607 0%,#0A0818 40%,#140E3A 78%,#241869 100%)' }}>
-      <span aria-hidden="true" style={{ position: 'absolute', left: '50%', bottom: -420, transform: 'translateX(-50%)', width: 1200, height: 1200, borderRadius: '50%', background: 'radial-gradient(circle at 50% 50%, rgba(160,144,255,.55) 0%, rgba(97,77,255,.28) 34%, rgba(97,77,255,0) 66%)', pointerEvents: 'none' }} />
+    <section id="mentoria" style={{ position: 'relative', paddingTop: 140, paddingBottom: 160, overflow: 'hidden', background: '#060607' }}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, transform: 'scaleY(-1)' }}>
+        {window.FibreArc && (
+          <window.FibreArc
+            background="#060607"
+            baseColor="#4A38C8"
+            accentColor="#8C7AFF"
+            highlight="#FEFDFF"
+          />
+        )}
+      </div>
       <div className="ar-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 26 }}>
         <Badge tone="glass" dot>Últimas vagas da turma 2026</Badge>
         <window.TerminalType
           as="h2"
           lines={['A ideia continua na sua cabeça', 'ou entra no ar este mês.']}
-          style={{ margin: 0, maxWidth: 900, fontSize: 'var(--text-display-1)', lineHeight: 'var(--lh-display)', letterSpacing: 'var(--tracking-display)', fontWeight: 'var(--weight-semibold)' }}
+          style={{ margin: 0, maxWidth: 900, fontFamily: 'var(--font-serif)', fontSize: 'var(--text-display-1)', lineHeight: 'var(--lh-display)', letterSpacing: '-0.01em', fontWeight: '600' }}
         />
         <p style={{ maxWidth: 560, fontSize: 'var(--text-body-lg)', color: 'rgba(254,253,255,.82)', lineHeight: 'var(--lh-body)' }}>
           R$197, acesso vitalício, 7 dias de garantia. O único jeito de descobrir se funciona é abrir o primeiro módulo.
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Button size="lg" href="#preco" iconRight={<Icon name="arrow-right" size={16} />}>Começar por R$197</Button>
+          <Button size="lg" href="#preco" className="ar-beam-btn" iconRight={<Icon name="arrow-right" size={16} />}>Começar por R$197</Button>
         </div>
       </div>
     </section>
