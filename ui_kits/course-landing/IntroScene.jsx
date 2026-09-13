@@ -3,83 +3,58 @@ const { Button, Wordmark } = window.AriumDesignSystem_4c6a30 || {};
 const introSeenKey = 'ar_intro_seen_v1';
 const introPrompt = 'cria um SaaS de assinaturas com login, dashboard e cobrança recorrente';
 
-function IntroDashboardMock() {
-  const bars = [38, 62, 45, 78, 54, 90, 60];
-  return (
-    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', padding: '9% 8%', gap: '6%' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-          <span style={{ width: 10, height: 10, borderRadius: 3, background: 'var(--text-accent,#A090FF)' }} />
-          <span style={{ width: '34%', height: 8, borderRadius: 4, background: 'rgba(254,253,255,.5)' }} />
-        </span>
-        <span style={{ width: '18%', height: 16, borderRadius: 8, background: 'var(--text-accent,#A090FF)' }} />
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '5%' }}>
-        {[0, 1, 2].map((i) => (
-          <span
-            key={i}
-            style={{ height: '15%', minHeight: 26, borderRadius: 8, background: 'rgba(254,253,255,.08)', border: '1px solid rgba(254,253,255,.14)', opacity: 0, animation: `ar-intro-pop .5s ease forwards ${0.1 + i * 0.12}s` }}
-          />
-        ))}
-      </div>
-      <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '4%', padding: '4% 0' }}>
-        {bars.map((h, i) => (
-          <span
-            key={i}
-            style={{
-              flex: 1,
-              height: `${h}%`,
-              borderRadius: '3px 3px 0 0',
-              background: 'linear-gradient(180deg, var(--text-accent,#A090FF), rgba(160,144,255,.25))',
-              opacity: 0,
-              transform: 'scaleY(0)',
-              transformOrigin: 'bottom',
-              animation: `ar-intro-bar .5s cubic-bezier(.22,.61,.36,1) forwards ${0.55 + i * 0.07}s`,
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
+// Timings measured against the source clip (assets/intro-video.mp4, 8s):
+// the AI prompt box is on screen and empty ~2.3s, fully "written" by ~3.0s,
+// then a zoom transition swallows it by ~3.4s. The camera settles back into
+// a centered composition with empty space below the laptop from ~6.8s on.
+const TYPE_START = 2.3;
+const TYPE_END = 3.05;
+const TYPE_FADE_END = 3.35;
+const CTA_START = 6.8;
 
 function IntroScene() {
   const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
   const [visible, setVisible] = React.useState(() => {
     try { return !localStorage.getItem(introSeenKey); } catch (e) { return true; }
   });
-  const [stage, setStage] = React.useState(reduced ? 'done' : 'enter');
-  const [typed, setTyped] = React.useState(reduced ? introPrompt.length : 0);
   const [closing, setClosing] = React.useState(false);
+  const [typedChars, setTypedChars] = React.useState(0);
+  const [textOpacity, setTextOpacity] = React.useState(0);
+  const [ctaVisible, setCtaVisible] = React.useState(reduced);
+  const [videoFailed, setVideoFailed] = React.useState(false);
+  const videoRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (!visible || reduced) return undefined;
+    if (!visible) return undefined;
     document.body.classList.add('ar-intro-lock');
-    const t = setTimeout(() => setStage('type'), 900);
-    return () => clearTimeout(t);
-  }, [visible, reduced]);
+    return () => document.body.classList.remove('ar-intro-lock');
+  }, [visible]);
 
   React.useEffect(() => {
-    if (!visible || reduced || stage !== 'type') return undefined;
+    if (!visible || reduced || videoFailed) return undefined;
+    const video = videoRef.current;
+    if (!video) return undefined;
     let raf;
-    let t0 = null;
-    const dur = 1500;
-    const step = (t) => {
-      if (!t0) t0 = t;
-      const p = Math.min(1, (t - t0) / dur);
-      setTyped(Math.round(p * introPrompt.length));
-      if (p < 1) raf = requestAnimationFrame(step);
-      else setTimeout(() => setStage('build'), 400);
+    const tick = () => {
+      const t = video.currentTime;
+      if (t <= TYPE_START) {
+        setTypedChars(0);
+        setTextOpacity(0);
+      } else if (t < TYPE_END) {
+        setTypedChars(Math.round(((t - TYPE_START) / (TYPE_END - TYPE_START)) * introPrompt.length));
+        setTextOpacity(1);
+      } else if (t < TYPE_FADE_END) {
+        setTypedChars(introPrompt.length);
+        setTextOpacity(1 - (t - TYPE_END) / (TYPE_FADE_END - TYPE_END));
+      } else {
+        setTextOpacity(0);
+      }
+      if (t >= CTA_START) setCtaVisible(true);
+      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(step);
+    raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [stage, visible, reduced]);
-
-  React.useEffect(() => {
-    if (!visible || reduced || stage !== 'build') return undefined;
-    const t = setTimeout(() => setStage('done'), 1500);
-    return () => clearTimeout(t);
-  }, [stage, visible, reduced]);
+  }, [visible, reduced, videoFailed]);
 
   const dismiss = () => {
     setClosing(true);
@@ -90,9 +65,7 @@ function IntroScene() {
 
   if (!visible) return null;
 
-  const showScreenContent = stage !== 'enter';
-  const showDashboard = stage === 'build' || stage === 'done';
-  const showCta = stage === 'done';
+  const showVideo = !reduced && !videoFailed;
 
   return (
     <div
@@ -104,82 +77,93 @@ function IntroScene() {
         inset: 0,
         zIndex: 9999,
         background: '#060607',
+        overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 34,
+        gap: 'clamp(12px,3vh,32px)',
         opacity: closing ? 0 : 1,
         transition: 'opacity .5s ease',
         pointerEvents: closing ? 'none' : 'auto',
       }}
     >
-      <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(60% 55% at 50% 40%, rgba(74,56,200,.28) 0%, rgba(6,6,7,0) 70%)' }} />
+      {/* Stage matches the source video's own 16:9 frame exactly (letterboxed
+          via flex-centering rather than object-fit:cover) so nothing about the
+          scene is ever cropped — a tall mobile viewport would otherwise slice
+          off both sides of the laptop under cover. The typed-prompt overlay is
+          positioned relative to this stage so it always lands on the laptop
+          screen regardless of viewport shape; the CTA sits below the stage as
+          a normal block so it never overlaps the video's own content. */}
+      <div style={{ position: 'relative', width: 'min(100%, 177.78vh)', maxHeight: '82vh', aspectRatio: '16/9' }}>
+        {showVideo ? (
+          <video
+            ref={videoRef}
+            src="assets/intro-video.mp4"
+            poster="assets/intro-poster.jpg"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            onEnded={() => setCtaVisible(true)}
+            onError={() => { setVideoFailed(true); setCtaVisible(true); }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+          />
+        ) : (
+          <img
+            src="assets/intro-poster.jpg"
+            alt=""
+            aria-hidden="true"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+          />
+        )}
 
-      <div style={{ position: 'relative', width: 'clamp(280px,46vw,560px)', perspective: 1400 }}>
-        <div
-          style={{
-            position: 'relative',
-            aspectRatio: '16/10.2',
-            borderRadius: '14px 14px 4px 4px',
-            border: '1px solid rgba(254,253,255,.16)',
-            background: 'linear-gradient(155deg,#141319,#08080b)',
-            boxShadow: '0 40px 90px rgba(0,0,0,.6)',
-            transformOrigin: 'bottom center',
-            transform: reduced ? 'none' : (stage === 'enter' ? 'rotateX(-92deg)' : 'rotateX(0deg)'),
-            transition: 'transform .85s cubic-bezier(.22,.61,.36,1)',
-            opacity: reduced ? 1 : (stage === 'enter' ? 0 : 1),
-            overflow: 'hidden',
-          }}
-        >
-          <span aria-hidden="true" style={{ position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)', width: 6, height: 6, borderRadius: '50%', background: 'rgba(254,253,255,.25)' }} />
-          <div style={{ position: 'absolute', inset: '9% 6% 6%', borderRadius: 6, background: '#0a0a0d', border: '1px solid rgba(254,253,255,.08)', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', inset: 0, opacity: showDashboard ? 1 : 0, transition: 'opacity .5s ease' }}>
-              <IntroDashboardMock />
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                padding: '7% 8%',
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(11px,1.6vw,15px)',
-                color: '#D9D6FF',
-                opacity: showDashboard ? 0 : (showScreenContent ? 1 : 0),
-                transition: 'opacity .3s ease',
-              }}
-            >
-              <span style={{ color: 'rgba(217,214,255,.5)' }}>{'$ '}</span>
-              {introPrompt.slice(0, typed)}
+        {showVideo && (
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '45%',
+              transform: 'translate(-50%,-50%)',
+              width: 'min(50%, 460px)',
+              textAlign: 'center',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'clamp(9px,1.5vw,15px)',
+              color: '#EDEBFF',
+              textShadow: '0 0 16px rgba(160,144,255,.9), 0 0 4px rgba(255,255,255,.6)',
+              opacity: textOpacity,
+              pointerEvents: 'none',
+            }}
+          >
+            {introPrompt.slice(0, typedChars)}
+            {typedChars > 0 && typedChars < introPrompt.length && (
               <span
-                aria-hidden="true"
                 style={{
                   display: 'inline-block',
-                  width: '0.5em',
-                  height: '1em',
-                  verticalAlign: '-0.15em',
+                  width: '0.09em',
+                  minWidth: 2,
+                  height: '0.9em',
                   marginLeft: 2,
-                  background: '#A090FF',
-                  animation: typed < introPrompt.length ? 'none' : 'ar-blink 1s step-end infinite',
+                  verticalAlign: '-0.1em',
+                  background: '#EDEBFF',
                 }}
               />
-            </div>
+            )}
           </div>
-        </div>
-        <div style={{ height: 10, margin: '0 4%', borderRadius: '0 0 8px 8px', background: 'linear-gradient(180deg,#1c1b22,#0c0c0f)', boxShadow: '0 12px 24px rgba(0,0,0,.5)' }} />
+        )}
       </div>
 
       <div
         style={{
-          position: 'relative',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 18,
-          opacity: showCta ? 1 : 0,
-          transform: showCta ? 'none' : 'translateY(14px)',
-          transition: 'opacity .5s ease, transform .5s ease',
-          pointerEvents: showCta ? 'auto' : 'none',
+          gap: 'clamp(10px,1.8vh,18px)',
+          opacity: ctaVisible ? 1 : 0,
+          transform: ctaVisible ? 'translateY(0)' : 'translateY(14px)',
+          transition: 'opacity .6s ease, transform .6s ease',
+          pointerEvents: ctaVisible ? 'auto' : 'none',
         }}
       >
         {Wordmark && <Wordmark size={20} />}
