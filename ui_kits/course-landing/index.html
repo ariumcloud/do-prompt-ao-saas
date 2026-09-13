@@ -26,21 +26,27 @@ body{background:var(--bg-page);overflow-x:hidden}
   border:1px solid var(--text-accent,#A090FF);
   animation:ar-pulse-ring 2.6s cubic-bezier(.2,.6,.35,1) infinite;
 }
-/* Border beam: a conic-gradient ring spinning behind the button; the button's
-   own opaque fill covers the center, leaving only a thin rotating rim of light. */
+/* Border beam: a blurred conic-gradient spinning behind the button, clipped by
+   overflow:hidden on the wrap so the blur can never escape past the pill's own
+   rounded edge, no matter the gradient's current angle. No mask-composite
+   (cross-browser landmine) and no unclipped blur (the earlier bug: blur paints
+   outside an element's own box by design, and without a clipping ancestor it
+   spilled into the page as a stray streak). */
 .ar-beam-wrap{
   position:relative;
   display:inline-flex;
-  border-radius:calc(var(--radius-sm) + 2px);
-  padding:2px;
+  border-radius:calc(var(--radius-sm) + 3px);
+  padding:3px;
+  overflow:hidden;
   isolation:isolate;
 }
 .ar-beam-wrap::before{
   content:"";
   position:absolute;
-  inset:0;
+  inset:-10px;
   border-radius:inherit;
-  background:conic-gradient(from 0deg, transparent 0%, rgba(254,253,255,.95) 5%, var(--text-accent,#A090FF) 12%, transparent 22%);
+  background:conic-gradient(from 0deg, transparent 0%, rgba(254,253,255,.95) 6%, var(--text-accent,#A090FF) 14%, transparent 28%);
+  filter:blur(8px);
   animation:ar-beam-spin 3.2s linear infinite;
   z-index:0;
 }

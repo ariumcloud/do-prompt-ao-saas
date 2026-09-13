@@ -21,7 +21,7 @@ function Hero() {
           />
         )}
       </div>
-      <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(80% 55% at 50% 0%, rgba(6,6,7,0) 30%, rgba(6,6,7,.7) 100%)' }} />
+      <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(80% 55% at 50% 0%, rgba(6,6,7,0) 30%, rgba(6,6,7,.7) 100%)', pointerEvents: 'none' }} />
       <div className="ar-container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 26 }}>
         <Badge tone="glass" dot>Turma 2026 · vagas abertas</Badge>
         <window.TerminalType
