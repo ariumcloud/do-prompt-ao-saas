@@ -833,6 +833,7 @@ function NavBar({
       flex: '0 0 auto'
     }
   }, brand), links.length > 0 && /*#__PURE__*/React.createElement("div", {
+    className: "arium-navbar-links",
     style: {
       display: 'flex',
       alignItems: 'center',
@@ -867,7 +868,7 @@ function NavBar({
       gap: 10,
       flex: '0 0 auto'
     }
-  }, actions));
+  }, actions), /*#__PURE__*/React.createElement("style", null, '@media (max-width:760px){.arium-navbar-links{display:none!important}}'));
 }
 Object.assign(__ds_scope, { NavBar });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/navigation/NavBar.jsx", error: String((e && e.message) || e) }); }

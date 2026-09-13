@@ -55,23 +55,22 @@ body{background:var(--bg-page);overflow-x:hidden}
 .ar-beam-wrap > *{ position:relative; z-index:1; }
 @keyframes ar-beam-spin{to{transform:rotate(360deg)}}
 </style>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 </head>
 <body>
 <div id="root"></div>
-<script type="text/babel" src="TerminalFx.jsx"></script>
-<script type="text/babel" src="FibreArc.jsx"></script>
-<script type="text/babel" src="Header.jsx"></script>
-<script type="text/babel" src="Hero.jsx"></script>
-<script type="text/babel" src="Audience.jsx"></script>
-<script type="text/babel" src="Modules.jsx"></script>
-<script type="text/babel" src="Proof.jsx"></script>
-<script type="text/babel" src="Offer.jsx"></script>
-<script type="text/babel" src="Closing.jsx"></script>
-<script type="text/babel">
+<script src="TerminalFx.js"></script>
+<script src="FibreArc.js"></script>
+<script src="Header.js"></script>
+<script src="Hero.js"></script>
+<script src="Audience.js"></script>
+<script src="Modules.js"></script>
+<script src="Proof.js"></script>
+<script src="Offer.js"></script>
+<script src="Closing.js"></script>
+<script>
 if (!window.AriumDesignSystem_4c6a30) {
   document.getElementById('root').innerHTML =
     '<div style="min-height:100vh;display:grid;place-items:center;padding:40px;text-align:center;font-family:Sora,sans-serif;color:#9B99A6;line-height:1.6">' +
@@ -81,24 +80,26 @@ if (!window.AriumDesignSystem_4c6a30) {
 }
 const { Header, Hero, Audience, Modules, Proof, Offer, Guarantee, Faq, Closing, SiteFooter } = window;
 function App() {
-  return (
-    <React.Fragment>
-      <Header />
-      <main>
-        <Hero />
-        <Audience />
-        <Modules />
-        <Proof />
-        <Offer />
-        <Guarantee />
-        <Faq />
-        <Closing />
-      </main>
-      <SiteFooter />
-    </React.Fragment>
+  return React.createElement(
+    React.Fragment,
+    null,
+    React.createElement(Header),
+    React.createElement(
+      'main',
+      null,
+      React.createElement(Hero),
+      React.createElement(Audience),
+      React.createElement(Modules),
+      React.createElement(Proof),
+      React.createElement(Offer),
+      React.createElement(Guarantee),
+      React.createElement(Faq),
+      React.createElement(Closing)
+    ),
+    React.createElement(SiteFooter)
   );
 }
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
 requestAnimationFrame(() => requestAnimationFrame(() => window.arInitReveal && window.arInitReveal()));
 </script>
 </body>

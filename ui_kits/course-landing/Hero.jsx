@@ -5,8 +5,8 @@ function Hero() {
     <section
       style={{
         position: 'relative',
-        paddingTop: 168,
-        paddingBottom: 120,
+        paddingTop: 'clamp(100px,20vw,168px)',
+        paddingBottom: 'clamp(64px,12vw,120px)',
         background: '#060607',
         overflow: 'hidden',
       }}

@@ -17,6 +17,7 @@ export function NavBar({ brand, links = [], actions, activeHref, style, ...rest 
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: '0 0 auto' }}>{brand}</div>
       {links.length > 0 && (
         <div
+          className="arium-navbar-links"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -54,6 +55,7 @@ export function NavBar({ brand, links = [], actions, activeHref, style, ...rest 
         </div>
       )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: '0 0 auto' }}>{actions}</div>
+      <style>{'@media (max-width:760px){.arium-navbar-links{display:none!important}}'}</style>
     </nav>
   );
 }

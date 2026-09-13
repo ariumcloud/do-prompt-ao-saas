@@ -188,8 +188,10 @@ function FibreArcBase(props) {
     let raf = 0;
     let last = performance.now();
     let clock = 0;
+    let visible = true;
 
     const render = (now) => {
+      if (!visible) { raf = 0; return; }
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       const v = vRef.current;
@@ -251,8 +253,22 @@ function FibreArcBase(props) {
     canvas.addEventListener('pointerleave', onLeave);
     raf = requestAnimationFrame(render);
 
+    // Stop the render loop entirely while scrolled off-screen — a WebGL
+    // canvas otherwise keeps painting 60fps forever, off-screen or not.
+    let io = null;
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          visible = entry.isIntersecting;
+          if (visible && !raf) { last = performance.now(); raf = requestAnimationFrame(render); }
+        });
+      }, { threshold: 0 });
+      io.observe(canvas);
+    }
+
     return () => {
       cancelAnimationFrame(raf);
+      if (io) io.disconnect();
       canvas.removeEventListener('pointermove', track);
       canvas.removeEventListener('pointerenter', track);
       canvas.removeEventListener('pointerleave', onLeave);

@@ -49,7 +49,7 @@ function Faq() {
 
 function Closing() {
   return (
-    <section id="mentoria" style={{ position: 'relative', paddingTop: 140, paddingBottom: 160, overflow: 'hidden', background: '#060607' }}>
+    <section id="mentoria" style={{ position: 'relative', paddingTop: 'clamp(80px,16vw,140px)', paddingBottom: 'clamp(80px,18vw,160px)', overflow: 'hidden', background: '#060607' }}>
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0 }}>
         {window.FibreArc && (
           <window.FibreArc
