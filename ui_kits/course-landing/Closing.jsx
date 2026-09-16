@@ -1,67 +1,69 @@
 const { Badge, Button, SectionHeading, Accordion, Icon, Wordmark, Input } = window.AriumDesignSystem_4c6a30 || {};
 
+// Scattered code-glow bubbles instead of one rectangular block: each is an
+// independent circular clip (mask fades to fully transparent, so no hard
+// edge) holding its own glow + a slice of pulsing hex text, positioned and
+// sized differently, breathing on its own delay. Positioned as % of the
+// full section (not the 1200px content container), so on a wide desktop
+// monitor the effect fills the whole section instead of sitting cramped in
+// the centered column with bare black margins on either side.
+const ariumGuaranteeBubbles = [
+  { left: '13%', top: '22%', size: 210, delay: 0, rows: 3, opacity: .8 },
+  { left: '85%', top: '14%', size: 260, delay: 1.6, rows: 3, opacity: .75 },
+  { left: '9%', top: '76%', size: 230, delay: 3.1, rows: 3, opacity: .8 },
+  { left: '90%', top: '72%', size: 190, delay: 2.2, rows: 2, opacity: .7 },
+  { left: '50%', top: '48%', size: 380, delay: 0.9, rows: 4, opacity: .5 },
+  { left: '32%', top: '85%', size: 170, delay: 4.0, rows: 2, opacity: .6 },
+];
+
 function Guarantee() {
   return (
-    <section className="ar-section">
-      <div className="ar-container">
-        <div
-          style={{
-            position: 'relative',
-            padding: 'clamp(56px,9vw,110px) clamp(24px,6vw,48px)',
-          }}
-        >
-          {/* Three organic glows at staggered delays instead of one synced
-              blob — each breathes on its own clock, so together they read as
-              a wave of pulses radiating outward rather than one shape
-              flexing in place. Each gets its own fixed (not animated)
-              asymmetric border-radius for an organic silhouette — animating
-              border-radius on a blurred element is one of the most expensive
-              things a browser can repaint every frame, and doing it on three
-              layers at once was the main source of the site-wide jank.
-              Scale/opacity alone are cheap: the compositor just resizes and
-              fades an already-rendered layer, no repaint needed. Sits
-              outside the clipped layer below so nothing crops it flat at
-              the top or sides. */}
-          {[
-            { delay: 0, radius: '42% 58% 63% 37% / 41% 44% 56% 59%' },
-            { delay: 1.8, radius: '58% 42% 39% 61% / 55% 62% 38% 45%' },
-            { delay: 3.6, radius: '48% 52% 56% 44% / 60% 40% 60% 40%' },
-          ].map(({ delay, radius }, i) => (
-            <span
-              key={i}
-              aria-hidden="true"
-              style={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                width: `${74 - i * 10}%`,
-                maxWidth: 920 - i * 160,
-                aspectRatio: '16/10',
-                borderRadius: radius,
-                background: 'radial-gradient(circle, rgba(130,110,255,.4) 0%, rgba(90,70,210,.18) 48%, transparent 76%)',
-                filter: 'blur(38px)',
-                animation: `ar-blob-breathe 5.5s ease-in-out ${delay}s infinite`,
-                willChange: 'transform, opacity',
-                pointerEvents: 'none',
-              }}
-            />
-          ))}
-          {/* Faded by an alpha mask (not a gradient that ends in an opaque
-              color) so the code dissolves to fully transparent at the edges
-              — revealing the glow/section behind it seamlessly instead of
-              cutting a visible box outline where an opaque fill used to
-              meet the glow just past its border. */}
+    <section className="ar-section" style={{ position: 'relative', overflow: 'hidden' }}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+        {ariumGuaranteeBubbles.map((b, i) => (
           <div
+            key={i}
             style={{
               position: 'absolute',
-              inset: 0,
-              overflow: 'hidden',
-              WebkitMaskImage: 'radial-gradient(65% 85% at 50% 50%, #000 35%, transparent 82%)',
-              maskImage: 'radial-gradient(65% 85% at 50% 50%, #000 35%, transparent 82%)',
+              left: b.left,
+              top: b.top,
+              width: b.size,
+              height: b.size,
+              opacity: b.opacity,
             }}
           >
-            <window.CodePulseBackground rows={10} />
+            {/* Animation lives on this inner layer (not the opacity-carrying
+                wrapper above) because ar-blob-breathe animates opacity too —
+                putting it on the same element would override each bubble's
+                own static opacity with the keyframe's .55/.9 values. */}
+            <div style={{ position: 'absolute', inset: 0, animation: `ar-blob-breathe 6s ease-in-out ${b.delay}s infinite`, willChange: 'transform, opacity' }}>
+              <span
+                style={{
+                  position: 'absolute',
+                  inset: '-30%',
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle, rgba(130,110,255,.4) 0%, rgba(90,70,210,.18) 48%, transparent 76%)',
+                  filter: 'blur(30px)',
+                }}
+              />
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  overflow: 'hidden',
+                  borderRadius: '50%',
+                  WebkitMaskImage: 'radial-gradient(circle at 50% 50%, #000 45%, transparent 85%)',
+                  maskImage: 'radial-gradient(circle at 50% 50%, #000 45%, transparent 85%)',
+                }}
+              >
+                <window.CodePulseBackground rows={b.rows} />
+              </div>
+            </div>
           </div>
+        ))}
+      </div>
+      <div className="ar-container" style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', padding: 'clamp(56px,9vw,110px) clamp(24px,6vw,48px)' }}>
           {/* Localized dark vignette behind the text only, fading to fully
               transparent well before the section edges, so it boosts
               contrast for reading without creating any hard boundary. */}
