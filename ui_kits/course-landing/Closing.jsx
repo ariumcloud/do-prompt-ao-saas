@@ -19,7 +19,23 @@ const ariumGuaranteeBubbles = [
 function Guarantee() {
   return (
     <section className="ar-section" style={{ position: 'relative', overflow: 'hidden' }}>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+      {/* Vertical fade on the whole decorative layer, not just each bubble's
+          own circular mask — a bubble centered near the top/bottom edge
+          still has half its radius clipped flat by the section's own
+          overflow:hidden, which is exactly the hard seam being reported.
+          Fading the layer itself to transparent well before the section
+          edges means nothing ever reaches that clip line with any opacity
+          left to show a cut. */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%)',
+        }}
+      >
         {ariumGuaranteeBubbles.map((b, i) => (
           <div
             key={i}
