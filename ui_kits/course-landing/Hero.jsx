@@ -26,11 +26,11 @@ function Hero() {
         <Badge tone="glass" dot>Turma 2026 · vagas abertas</Badge>
         <window.TerminalType
           as="h1"
-          lines={['Você não precisa saber programar', 'para criar o seu próprio SaaS.']}
+          lines={['Você não precisa saber', 'programar para criar', 'o seu próprio SaaS.']}
           style={{
             margin: 0,
             maxWidth: 1100,
-            fontSize: 'var(--text-display-2)',
+            fontSize: 'clamp(38px,5.8vw,80px)',
             lineHeight: 'var(--lh-display)',
             letterSpacing: 'var(--tracking-display)',
             fontWeight: 'var(--weight-semibold)',
