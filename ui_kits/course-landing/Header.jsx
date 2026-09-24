@@ -30,7 +30,6 @@ function Header() {
             { label: 'Para quem é', href: '#quem' },
             { label: 'Prova', href: '#prova' },
             { label: 'Preço', href: '#preco' },
-            { label: 'Mentoria', href: '#mentoria', badge: <Badge size="sm" tone="glass">EM BREVE</Badge> },
           ]}
           actions={
             <React.Fragment>
