@@ -158,18 +158,28 @@ function ColorSweepHeading({ text, highlight }) {
   const isTwoTone = parts.length === 3;
   let charIndex = 0;
 
-  const renderChars = (str, finalColor) => str.split('').map((ch) => {
-    const idx = charIndex++;
+  // Chars are inline-block (for the per-letter color transition), and a browser
+  // may break a line between any two inline-blocks, splitting words mid-letter.
+  // Wrapping each word in a nowrap box keeps breaks on the spaces only.
+  const renderChars = (str, finalColor) => str.split(/( )/).map((word, w) => {
+    if (word === ' ') { charIndex++; return ' '; }
     return (
-      <span
-        key={idx}
-        style={{
-          display: 'inline-block',
-          color: triggered ? finalColor : 'var(--text-accent, #A090FF)',
-          transition: `color .5s ease ${idx * 16}ms`,
-        }}
-      >
-        {ch === ' ' ? ' ' : ch}
+      <span key={w} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+        {word.split('').map((ch) => {
+          const idx = charIndex++;
+          return (
+            <span
+              key={idx}
+              style={{
+                display: 'inline-block',
+                color: triggered ? finalColor : 'var(--text-accent, #A090FF)',
+                transition: `color .5s ease ${idx * 16}ms`,
+              }}
+            >
+              {ch}
+            </span>
+          );
+        })}
       </span>
     );
   });
