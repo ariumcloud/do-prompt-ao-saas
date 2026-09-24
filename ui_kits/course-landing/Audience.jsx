@@ -1,10 +1,10 @@
 const { Card, Badge, SectionHeading, Icon } = window.AriumDesignSystem_4c6a30 || {};
 
 const ariumAudienceFor = [
-  'Você tem uma ideia de negócio parada e nunca achou quem a construísse.',
+  'Você conhece um problema do seu nicho e quer transformá-lo em um sistema que as pessoas paguem para usar.',
   'Você já usa IA para escrever textos e quer usá-la para criar um produto.',
   'Você é freelancer ou agência e quer parar de vender horas.',
-  'Você quer testar uma ideia antes de gastar com uma equipe.',
+  'Você tem uma ideia parada e quer testá-la antes de gastar com uma equipe.',
 ];
 
 const ariumAudienceNot = [

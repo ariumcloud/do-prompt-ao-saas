@@ -106,6 +106,7 @@ function Guarantee() {
 
 const ariumFaq = [
   { question: 'Preciso saber programar?', answer: 'Não. O curso parte do zero em código. Você aprende a descrever o que quer, revisar o que a IA escreve e corrigir quando quebra — que é o trabalho real de quem publica software hoje.' },
+  { question: 'O que eu posso criar com o curso?', answer: 'Qualquer sistema que funcione no navegador: agendamento, controle de estoque, painel de clientes, gerador de propostas, plataforma de cursos, hospedagem. O método é o mesmo, muda só a ideia. E você decide como cobrar: assinatura, pagamento único ou por uso.' },
   { question: 'Quanto tempo até ter algo no ar?', answer: 'O último módulo termina com o app no ar. Dedicando cerca de 5 horas por semana, a maior parte dos alunos publica em um mês.' },
   { question: 'Quanto custa manter o SaaS rodando?', answer: 'Os planos gratuitos de Supabase e Vercel cobrem o início. O primeiro custo de verdade só aparece quando você já tem clientes pagando.' },
   { question: 'Serve para vender projeto para cliente?', answer: 'Sim. Vários alunos usam o método para entregar sistemas sob medida em vez de vender hora.' },

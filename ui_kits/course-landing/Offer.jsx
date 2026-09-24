@@ -2,7 +2,7 @@ const { Card, Badge, Button, SectionHeading, Icon, Wordmark } = window.AriumDesi
 
 const ariumIncluded = [
   'Aulas gravadas, da ideia até o site no ar',
-  'Projeto-base pronto para copiar e adaptar',
+  'Projeto-base que você adapta para qualquer tipo de sistema',
   'Biblioteca de prompts para pedir e corrigir código',
   'Checklist de lançamento e de segurança',
   'Comunidade no Discord com revisão de projeto',

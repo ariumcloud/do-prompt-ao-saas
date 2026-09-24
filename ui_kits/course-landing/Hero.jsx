@@ -26,7 +26,7 @@ function Hero() {
         <Badge tone="glass" dot>Turma 2026 · vagas abertas</Badge>
         <window.TerminalType
           as="h1"
-          lines={['Você não precisa saber programar', 'para lançar o seu próprio SaaS.']}
+          lines={['Você não precisa saber programar', 'para criar o seu próprio SaaS.']}
           style={{
             margin: 0,
             maxWidth: 940,
@@ -38,7 +38,7 @@ function Hero() {
           }}
         />
         <p style={{ maxWidth: 620, fontSize: 'clamp(14px,2vw + 8px,17px)', lineHeight: 'var(--lh-body)', color: 'rgba(254,253,255,.82)' }}>
-          Aprenda a criar e publicar o seu próprio sistema online, com assinatura e pagamento, usando IA para escrever o código. Você termina o curso com um produto no ar, pronto para vender.
+          SaaS é um sistema que as pessoas usam pelo navegador: um app de agendamento, um painel para clientes, uma ferramenta de orçamentos, uma plataforma de hospedagem. Aprenda a criar o seu com IA escrevendo o código e a cobrar por ele do jeito que quiser.
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 6 }}>
           <window.BeamWrap>
