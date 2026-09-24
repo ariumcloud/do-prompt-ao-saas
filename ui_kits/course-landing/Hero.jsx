@@ -29,8 +29,8 @@ function Hero() {
           lines={['Você não precisa saber programar', 'para criar o seu próprio SaaS.']}
           style={{
             margin: 0,
-            maxWidth: 940,
-            fontSize: 'var(--text-display-1)',
+            maxWidth: 1100,
+            fontSize: 'var(--text-display-2)',
             lineHeight: 'var(--lh-display)',
             letterSpacing: 'var(--tracking-display)',
             fontWeight: 'var(--weight-semibold)',
