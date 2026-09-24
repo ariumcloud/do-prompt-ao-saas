@@ -158,7 +158,7 @@ function Closing() {
           style={{ margin: 0, maxWidth: 900, fontFamily: 'var(--font-serif)', fontSize: 'var(--text-display-1)', lineHeight: 'var(--lh-display)', letterSpacing: '-0.01em', fontWeight: '600', textShadow: '0 4px 28px rgba(0,0,0,.65), 0 1px 4px rgba(0,0,0,.85)' }}
         />
         <p style={{ maxWidth: 560, fontSize: 'clamp(14px,2vw + 8px,17px)', color: 'rgba(254,253,255,.82)', lineHeight: 'var(--lh-body)' }}>
-          R$147, acesso vitalício e 7 dias de garantia. O jeito mais rápido de saber se funciona é assistir ao primeiro módulo.
+          R$147 em pagamento único, 1 ano de atualizações e 7 dias de garantia. O jeito mais rápido de saber se funciona é assistir ao primeiro módulo.
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
           <window.BeamWrap>

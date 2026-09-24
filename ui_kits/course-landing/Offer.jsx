@@ -6,7 +6,7 @@ const ariumIncluded = [
   'Biblioteca de prompts para pedir e corrigir código',
   'Checklist de lançamento e de segurança',
   'Comunidade no Discord com revisão de projeto',
-  'Acesso vitalício e todas as atualizações',
+  '1 ano de atualizações do curso incluído',
 ];
 
 function Offer() {
@@ -16,7 +16,7 @@ function Offer() {
       <div className="ar-container" style={{ position: 'relative' }}>
         <SectionHeading
           eyebrow={<Badge tone="glass">Oferta</Badge>}
-          title={<window.TerminalType lines={['Um pagamento. O curso inteiro. Para sempre.']} style={{ display: 'block', fontFamily: 'var(--font-serif)', letterSpacing: '-0.01em', fontWeight: '600' }} />}
+          title={<window.TerminalType lines={['Um pagamento. O curso inteiro. Sem mensalidade.']} style={{ display: 'block', fontFamily: 'var(--font-serif)', letterSpacing: '-0.01em', fontWeight: '600' }} />}
         />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: 20, marginTop: 56, alignItems: 'stretch' }}>
           <Card padding="none" radius="xl" style={{ display: 'flex', flexDirection: 'column' }}>

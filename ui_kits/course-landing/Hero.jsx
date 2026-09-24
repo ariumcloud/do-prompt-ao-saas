@@ -47,9 +47,9 @@ function Hero() {
           <Button size="lg" variant="secondary" href="#modulos" iconLeft={<Icon name="list" size={16} />}>Ver o que você vai construir</Button>
         </div>
         <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', justifyContent: 'center', fontSize: 'var(--text-caption)', color: 'rgba(254,253,255,.66)' }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><Icon name="infinity" size={14} />Acesso vitalício</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><Icon name="credit-card" size={14} />Pagamento único</span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><Icon name="shield-check" size={14} />7 dias de garantia</span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><Icon name="refresh-cw" size={14} />Atualizações incluídas</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><Icon name="refresh-cw" size={14} />1 ano de atualizações</span>
         </div>
       </div>
     </section>
