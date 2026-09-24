@@ -14,13 +14,13 @@ function Proof() {
           <Card padding="lg" radius="xl" tone="raised" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <Badge tone="accent" dot>cabin · em produção</Badge>
             <p style={{ fontSize: 'var(--text-body-lg)', lineHeight: 'var(--lh-body)', color: 'var(--text-secondary)' }}>
-              O cabin é um SaaS multi-tenant que eu construí com o mesmo método deste curso: IA escrevendo o código, eu dirigindo as decisões. Hoje ele atende clientes pagantes, com login, cobrança recorrente e dados isolados por conta.
+              O cabin é um SaaS de verdade que eu construí com o mesmo método deste curso: a IA escreve o código, eu tomo as decisões. Hoje ele tem clientes pagando uma assinatura, cada um com seu login e vendo só os próprios dados.
             </p>
             <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-muted)' }}>
               Cada decisão que você vai ver nos módulos foi tomada duas vezes: uma dentro do cabin, outra na aula.
             </p>
             <div style={{ marginTop: 'auto', display: 'flex', gap: 32, flexWrap: 'wrap', paddingTop: 12 }}>
-              <Stat label="Contas ativas" value="Multi-tenant" />
+              <Stat label="Clientes" value="Cada um na sua conta" />
               <Stat label="Cobrança" value="Recorrente" />
               <Stat label="Stack" value="Next · Supabase" />
             </div>
@@ -28,9 +28,9 @@ function Proof() {
           <Card padding="none" radius="xl" tone="glow" style={{ display: 'grid', placeItems: 'center', minHeight: 320, padding: 28 }}>
             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
-                { icon: 'users', k: 'Clientes reais', v: 'contas separadas, dados isolados' },
+                { icon: 'users', k: 'Clientes reais', v: 'cada cliente vê só os próprios dados' },
                 { icon: 'credit-card', k: 'Gateway de pagamento', v: 'assinatura + webhook em produção' },
-                { icon: 'shield-check', k: 'Auth e permissões', v: 'Supabase RLS por tenant' },
+                { icon: 'shield-check', k: 'Auth e permissões', v: 'login e permissões por cliente' },
                 { icon: 'globe', k: 'Deploy', v: 'domínio próprio na Vercel' },
               ].map((r) => (
                 <div key={r.k} style={{ display: 'flex', gap: 14, alignItems: 'center', padding: '14px 16px', borderRadius: 'var(--radius-md)', background: 'var(--ar-alpha-4)', border: '1px solid var(--border-subtle)', backdropFilter: 'var(--blur-glass)' }}>

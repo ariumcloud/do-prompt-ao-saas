@@ -9,11 +9,6 @@ const ariumIncluded = [
   'Acesso vitalício e todas as atualizações',
 ];
 
-const ariumBonus = [
-  { icon: 'file-text', t: 'Bônus 1 — Kit de contratos', d: 'Proposta e contrato para vender o SaaS como projeto fechado.' },
-  { icon: 'wallet', t: 'Bônus 2 — Precificação', d: 'Planilha de planos, custos de infra e ponto de equilíbrio.' },
-];
-
 function Offer() {
   return (
     <section id="preco" className="ar-section" style={{ position: 'relative' }}>
@@ -36,17 +31,6 @@ function Offer() {
                   </li>
                 ))}
               </ul>
-              <div style={{ marginTop: 'auto', paddingTop: 20, borderTop: '1px solid var(--border-subtle)', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {ariumBonus.map((b) => (
-                  <div key={b.t} style={{ display: 'flex', gap: 12 }}>
-                    <span style={{ color: 'var(--text-accent)', marginTop: 2 }}><Icon name={b.icon} size={16} /></span>
-                    <span style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      <span style={{ fontSize: 'var(--text-body-sm)', fontWeight: 'var(--weight-medium)' }}>{b.t}</span>
-                      <span style={{ fontSize: 'var(--text-caption)', color: 'var(--text-muted)' }}>{b.d}</span>
-                    </span>
-                  </div>
-                ))}
-              </div>
             </div>
           </Card>
 
@@ -59,11 +43,15 @@ function Offer() {
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
                 <span style={{ fontSize: 18, color: 'rgba(254,253,255,.72)' }}>R$</span>
-                <span style={{ fontSize: 76, fontWeight: 'var(--weight-semibold)', letterSpacing: '-0.045em', lineHeight: .9 }}>197</span>
+                <span style={{ fontSize: 76, fontWeight: 'var(--weight-semibold)', letterSpacing: '-0.045em', lineHeight: .9 }}>147</span>
                 <span style={{ fontSize: 'var(--text-body-sm)', color: 'rgba(254,253,255,.72)' }}>à vista</span>
               </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: -8 }}>
+                <span style={{ fontSize: 'var(--text-body-sm)', color: 'rgba(254,253,255,.6)', textDecoration: 'line-through' }}>de R$197</span>
+                <Badge tone="glass" size="sm">25% OFF · lançamento</Badge>
+              </div>
               <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'rgba(254,253,255,.86)' }}>
-                ou 12× de R$19,90 no cartão. Sem mensalidade, sem upsell obrigatório, sem curso avançado escondido.
+                ou 12× de R$14,85 no cartão. Sem mensalidade, sem upsell obrigatório, sem curso avançado escondido.
               </p>
               <Button size="lg" variant="secondary" fullWidth style={{ background: 'var(--ar-chalk-0)', color: 'var(--ar-ink-0)', border: '1px solid transparent', boxShadow: 'none', fontWeight: 'var(--weight-semibold)' }}>
                 Comprar agora

@@ -95,7 +95,7 @@ function Guarantee() {
             <Badge tone="glass" size="sm">Garantia</Badge>
             <h3 style={{ fontSize: 'var(--text-h3)', textShadow: '0 2px 16px rgba(0,0,0,.7), 0 1px 3px rgba(0,0,0,.9)' }}>7 dias para testar. O risco é meu.</h3>
             <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-secondary)', textShadow: '0 2px 12px rgba(0,0,0,.7), 0 1px 3px rgba(0,0,0,.9)' }}>
-              Assista aos módulos, baixe o repositório, faça o primeiro deploy. Se em uma semana você achar que não era isso, responde o e-mail de compra e eu devolvo os R$197. Sem formulário, sem pergunta de retenção.
+              Assista aos módulos, baixe o repositório, faça o primeiro deploy. Se em uma semana você achar que não era isso, responde o e-mail de compra e eu devolvo os R$147. Sem formulário, sem pergunta de retenção.
             </p>
           </div>
         </div>
@@ -108,7 +108,7 @@ const ariumFaq = [
   { question: 'Preciso saber programar?', answer: 'Não. O curso parte do zero em código. Você aprende a descrever o que quer, revisar o que a IA escreve e corrigir quando quebra — que é o trabalho real de quem publica software hoje.' },
   { question: 'Quanto tempo até ter algo no ar?', answer: 'O módulo 6 termina com o deploy. Dedicando cerca de 5 horas por semana, a maior parte dos alunos publica em um mês.' },
   { question: 'Quanto custa manter o SaaS rodando?', answer: 'Os planos gratuitos de Supabase e Vercel cobrem o início. O primeiro custo real aparece quando você já tem clientes pagando — e o módulo de precificação trata exatamente disso.' },
-  { question: 'Serve para vender projeto para cliente?', answer: 'Sim. O bônus de contratos e proposta existe para isso. Vários alunos usam o método para entregar sistemas sob medida em vez de vender hora.' },
+  { question: 'Serve para vender projeto para cliente?', answer: 'Sim. Vários alunos usam o método para entregar sistemas sob medida em vez de vender hora.' },
   { question: 'Funciona no Windows?', answer: 'Sim. Todo o stack roda no navegador e no terminal, igual no Mac e no Linux.' },
   { question: 'Tem certificado?', answer: 'Não. O que você mostra no fim é o produto no ar com um domínio, que vale mais que um PDF.' },
 ];
@@ -158,11 +158,11 @@ function Closing() {
           style={{ margin: 0, maxWidth: 900, fontFamily: 'var(--font-serif)', fontSize: 'var(--text-display-1)', lineHeight: 'var(--lh-display)', letterSpacing: '-0.01em', fontWeight: '600', textShadow: '0 4px 28px rgba(0,0,0,.65), 0 1px 4px rgba(0,0,0,.85)' }}
         />
         <p style={{ maxWidth: 560, fontSize: 'clamp(14px,2vw + 8px,17px)', color: 'rgba(254,253,255,.82)', lineHeight: 'var(--lh-body)' }}>
-          R$197, acesso vitalício, 7 dias de garantia. O único jeito de descobrir se funciona é abrir o primeiro módulo.
+          R$147, acesso vitalício, 7 dias de garantia. O único jeito de descobrir se funciona é abrir o primeiro módulo.
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
           <window.BeamWrap>
-            <Button size="lg" href="#preco" iconRight={<Icon name="arrow-right" size={16} />}>Começar por R$197</Button>
+            <Button size="lg" href="#preco" iconRight={<Icon name="arrow-right" size={16} />}>Começar por R$147</Button>
           </window.BeamWrap>
         </div>
       </div>

@@ -42,7 +42,7 @@ function Hero() {
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 6 }}>
           <window.BeamWrap>
-            <Button size="lg" href="#preco">Quero acesso por R$197</Button>
+            <Button size="lg" href="#preco">Quero acesso por R$147</Button>
           </window.BeamWrap>
           <Button size="lg" variant="secondary" href="#modulos" iconLeft={<Icon name="list" size={16} />}>Ver o que você vai construir</Button>
         </div>
