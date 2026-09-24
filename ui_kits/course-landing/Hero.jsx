@@ -30,7 +30,7 @@ function Hero() {
           style={{
             margin: 0,
             maxWidth: 1100,
-            fontSize: 'clamp(26px,7vw,80px)',
+            fontSize: 'clamp(29px,7.8vw,80px)',
             lineHeight: 'var(--lh-display)',
             letterSpacing: 'var(--tracking-display)',
             fontWeight: 'var(--weight-semibold)',

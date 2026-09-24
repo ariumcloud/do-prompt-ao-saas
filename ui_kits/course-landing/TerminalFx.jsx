@@ -20,7 +20,10 @@ function TerminalCursor({ active, size = '0.95em' }) {
         width: '0.1em',
         minWidth: 3,
         height: size,
+        // Net-zero layout width (0.1em + 0.1em - 0.2em): a cursor with real
+        // width wraps onto its own empty line when the text fills the row.
         marginLeft: '0.1em',
+        marginRight: '-0.2em',
         verticalAlign: '-0.1em',
         background: 'var(--text-accent, #A090FF)',
         boxShadow: '0 0 14px rgba(160,144,255,.95), 0 0 4px rgba(255,255,255,.6)',
