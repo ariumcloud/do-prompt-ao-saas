@@ -6,32 +6,32 @@ function Proof() {
       <div className="ar-container">
         <SectionHeading
           align="left"
-          eyebrow={<Badge tone="neutral">Autoridade</Badge>}
+          eyebrow={<Badge tone="neutral">Prova real</Badge>}
           title="Eu não ensino o que li. Ensino o que está rodando."
           highlight="o que está rodando"
         />
         <div className="ar-grid-2col" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.1fr) minmax(0,.9fr)', gap: 20, marginTop: 48, alignItems: 'stretch' }}>
           <Card padding="lg" radius="xl" tone="raised" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <Badge tone="accent" dot>cabin · em produção</Badge>
+            <Badge tone="accent" dot>Meu SaaS de hospedagem · no ar</Badge>
             <p style={{ fontSize: 'var(--text-body-lg)', lineHeight: 'var(--lh-body)', color: 'var(--text-secondary)' }}>
-              O cabin é um SaaS de verdade que eu construí com o mesmo método deste curso: a IA escreve o código, eu tomo as decisões. Hoje ele tem clientes pagando uma assinatura, cada um com seu login e vendo só os próprios dados.
+              Criei um sistema de hospedagem online com o mesmo método deste curso: a IA escreve o código e eu decido o que construir. Hoje meus clientes já movimentaram mais de R$100 mil por ele.
             </p>
             <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'var(--text-muted)' }}>
-              Cada decisão que você vai ver nos módulos foi tomada duas vezes: uma dentro do cabin, outra na aula.
+              Tudo o que você vai ver nas aulas eu usei nesse produto primeiro.
             </p>
             <div style={{ marginTop: 'auto', display: 'flex', gap: 32, flexWrap: 'wrap', paddingTop: 12 }}>
+              <Stat label="Movimentado" value="+R$100 mil" />
+              <Stat label="Cobrança" value="Assinatura" />
               <Stat label="Clientes" value="Cada um na sua conta" />
-              <Stat label="Cobrança" value="Recorrente" />
-              <Stat label="Stack" value="Next · Supabase" />
             </div>
           </Card>
           <Card padding="none" radius="xl" tone="glow" style={{ display: 'grid', placeItems: 'center', minHeight: 320, padding: 28 }}>
             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
-                { icon: 'users', k: 'Clientes reais', v: 'cada cliente vê só os próprios dados' },
-                { icon: 'credit-card', k: 'Gateway de pagamento', v: 'assinatura + webhook em produção' },
-                { icon: 'shield-check', k: 'Auth e permissões', v: 'login e permissões por cliente' },
-                { icon: 'globe', k: 'Deploy', v: 'domínio próprio na Vercel' },
+                { icon: 'users', k: 'Clientes reais', v: 'cada um com login e dados separados' },
+                { icon: 'credit-card', k: 'Pagamento online', v: 'assinatura cobrada automaticamente' },
+                { icon: 'shield-check', k: 'Login e permissões', v: 'cada cliente só vê o que é dele' },
+                { icon: 'globe', k: 'No ar de verdade', v: 'endereço próprio, aberto ao público' },
               ].map((r) => (
                 <div key={r.k} style={{ display: 'flex', gap: 14, alignItems: 'center', padding: '14px 16px', borderRadius: 'var(--radius-md)', background: 'var(--ar-alpha-4)', border: '1px solid var(--border-subtle)', backdropFilter: 'var(--blur-glass)' }}>
                   <span style={{ color: 'var(--text-accent)' }}><Icon name={r.icon} size={18} /></span>

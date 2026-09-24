@@ -26,7 +26,7 @@ function Hero() {
         <Badge tone="glass" dot>Turma 2026 · vagas abertas</Badge>
         <window.TerminalType
           as="h1"
-          lines={['Você não precisa virar programador', 'para colocar um SaaS no ar.']}
+          lines={['Você não precisa saber programar', 'para lançar o seu próprio SaaS.']}
           style={{
             margin: 0,
             maxWidth: 940,
@@ -38,7 +38,7 @@ function Hero() {
           }}
         />
         <p style={{ maxWidth: 620, fontSize: 'clamp(14px,2vw + 8px,17px)', lineHeight: 'var(--lh-body)', color: 'rgba(254,253,255,.82)' }}>
-          Do Prompt ao SaaS é o curso que te leva da ideia ao primeiro pagamento aprovado usando IA generativa como par de programação. Da fundação técnica ao deploy, um produto publicado no fim.
+          Aprenda a criar e publicar o seu próprio sistema online, com assinatura e pagamento, usando IA para escrever o código. Você termina o curso com um produto no ar, pronto para vender.
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 6 }}>
           <window.BeamWrap>

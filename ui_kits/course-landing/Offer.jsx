@@ -1,9 +1,9 @@
 const { Card, Badge, Button, SectionHeading, Icon, Wordmark } = window.AriumDesignSystem_4c6a30 || {};
 
 const ariumIncluded = [
-  'Aulas gravadas, do primeiro prompt ao deploy',
-  'Repositório-base do projeto do curso',
-  'Biblioteca de prompts de arquitetura e correção',
+  'Aulas gravadas, da ideia até o site no ar',
+  'Projeto-base pronto para copiar e adaptar',
+  'Biblioteca de prompts para pedir e corrigir código',
   'Checklist de lançamento e de segurança',
   'Comunidade no Discord com revisão de projeto',
   'Acesso vitalício e todas as atualizações',
@@ -51,7 +51,7 @@ function Offer() {
                 <Badge tone="glass" size="sm">25% OFF · lançamento</Badge>
               </div>
               <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'rgba(254,253,255,.86)' }}>
-                ou 12× de R$14,85 no cartão. Sem mensalidade, sem upsell obrigatório, sem curso avançado escondido.
+                ou 12× de R$14,85 no cartão. Sem mensalidade, sem venda extra obrigatória, sem curso avançado escondido.
               </p>
               <Button size="lg" variant="secondary" fullWidth style={{ background: 'var(--ar-chalk-0)', color: 'var(--ar-ink-0)', border: '1px solid transparent', boxShadow: 'none', fontWeight: 'var(--weight-semibold)' }}>
                 Comprar agora

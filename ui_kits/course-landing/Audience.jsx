@@ -1,17 +1,17 @@
 const { Card, Badge, SectionHeading, Icon } = window.AriumDesignSystem_4c6a30 || {};
 
 const ariumAudienceFor = [
-  'Você tem uma ideia parada há meses e nunca achou um dev.',
-  'Você já usa IA para escrever texto e quer usar para construir produto.',
-  'Você é freelancer ou agência e quer parar de vender hora.',
-  'Você quer validar um micro-SaaS antes de investir em time.',
+  'Você tem uma ideia de negócio parada e nunca achou quem a construísse.',
+  'Você já usa IA para escrever textos e quer usá-la para criar um produto.',
+  'Você é freelancer ou agência e quer parar de vender horas.',
+  'Você quer testar uma ideia antes de gastar com uma equipe.',
 ];
 
 const ariumAudienceNot = [
-  'Quem procura renda passiva sem trabalhar nas primeiras semanas.',
-  'Quem quer virar engenheiro de software — isto não é uma graduação.',
-  'Quem espera um template pronto para revender sem entender nada.',
-  'Quem não vai abrir o computador para fazer os exercícios.',
+  'Quem procura dinheiro fácil sem trabalhar nas primeiras semanas.',
+  'Quem quer virar programador de carreira — isto não é uma faculdade.',
+  'Quem espera um modelo pronto para revender sem entender nada.',
+  'Quem não vai abrir o computador para fazer as atividades.',
 ];
 
 function AudienceList({ tone, title, items }) {
@@ -42,7 +42,7 @@ function Audience() {
       <div className="ar-container">
         <SectionHeading
           eyebrow={<Badge tone="neutral">Qualificação</Badge>}
-          title={<window.ColorSweepHeading text="Antes do preço, a pergunta honesta: isso é para você?" highlight="isso é para você?" />}
+          title={<window.ColorSweepHeading text="Antes do preço, uma pergunta honesta: isso é para você?" highlight="isso é para você?" />}
           subtitle="Prefiro que você feche esta página agora a pedir reembolso daqui a uma semana."
         />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: 20, marginTop: 56 }}>
