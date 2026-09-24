@@ -53,7 +53,7 @@ function Offer() {
               <p style={{ fontSize: 'var(--text-body-sm)', lineHeight: 'var(--lh-body)', color: 'rgba(254,253,255,.86)' }}>
                 ou 12× de R$14,85 no cartão. Sem mensalidade, sem venda extra obrigatória, sem curso avançado escondido.
               </p>
-              <Button size="lg" variant="secondary" fullWidth style={{ background: 'var(--ar-chalk-0)', color: 'var(--ar-ink-0)', border: '1px solid transparent', boxShadow: 'none', fontWeight: 'var(--weight-semibold)' }}>
+              <Button size="lg" variant="secondary" fullWidth href="https://pay.cakto.com.br/9pjx596_1134535" target="_blank" rel="noopener" style={{ background: 'var(--ar-chalk-0)', color: 'var(--ar-ink-0)', border: '1px solid transparent', boxShadow: 'none', fontWeight: 'var(--weight-semibold)' }}>
                 Comprar agora
               </Button>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 'var(--text-caption)', color: 'rgba(254,253,255,.78)' }}>

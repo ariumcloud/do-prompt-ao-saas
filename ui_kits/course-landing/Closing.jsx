@@ -163,7 +163,7 @@ function Closing() {
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
           <window.BeamWrap>
-            <Button size="lg" href="#preco" iconRight={<Icon name="arrow-right" size={16} />}>Começar por R$147</Button>
+            <Button size="lg" href="https://pay.cakto.com.br/9pjx596_1134535" target="_blank" rel="noopener" iconRight={<Icon name="arrow-right" size={16} />}>Começar por R$147</Button>
           </window.BeamWrap>
         </div>
       </div>
