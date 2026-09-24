@@ -41,6 +41,43 @@ function IntroScene() {
     return () => cancelAnimationFrame(raf);
   }, [visible, reduced, videoFailed, ctaVisible]);
 
+  // The CTA is gated on the video's clock above, so if the video never
+  // advances the visitor is stuck behind a full-screen overlay. Mobile
+  // browsers do this a lot: iOS Low Power Mode and data-saver modes reject
+  // autoplay, and slow connections stall mid-clip. These fallbacks run on
+  // wall-clock time so the button always shows up.
+  React.useEffect(() => {
+    if (!visible || ctaVisible) return undefined;
+    const video = videoRef.current;
+    const reveal = () => setCtaVisible(true);
+
+    // Autoplay attribute failures are silent; an explicit play() rejects.
+    if (video) {
+      const attempt = video.play();
+      if (attempt && attempt.catch) attempt.catch(reveal);
+    }
+
+    // Never started (blocked or still buffering) → show the button anyway.
+    const notStarted = setTimeout(() => {
+      if (!video || video.paused || video.currentTime < 0.1) reveal();
+    }, 3000);
+
+    // Started but froze: currentTime stops moving for 1.5s.
+    let lastTime = -1;
+    let frozenSince = 0;
+    const stallCheck = setInterval(() => {
+      if (!video || video.currentTime < 0.1) return; // not started yet: notStarted covers it
+      const now = Date.now();
+      if (video.currentTime !== lastTime) { lastTime = video.currentTime; frozenSince = now; return; }
+      if (frozenSince && now - frozenSince >= 1500) reveal();
+    }, 500);
+
+    // Hard cap regardless of what the video does.
+    const cap = setTimeout(reveal, (CTA_START + 2) * 1000);
+
+    return () => { clearTimeout(notStarted); clearInterval(stallCheck); clearTimeout(cap); };
+  }, [visible, ctaVisible]);
+
   const dismiss = () => {
     setClosing(true);
     document.body.classList.remove('ar-intro-lock');
